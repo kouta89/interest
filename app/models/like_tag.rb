@@ -1,0 +1,2 @@
+class LikeTag < ApplicationRecord
+end
