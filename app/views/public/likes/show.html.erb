@@ -1,0 +1,29 @@
+<div class="container">
+	<div class="row ">
+    <div class="col">
+      <h2>投稿詳細</h2>
+    </div>
+  </div>
+    <div class ="row">
+      <div class ="col">
+         <%= image_tag @like.get_image, size: "330x330" %>
+      </div>
+
+      <div class="col">
+        <table>
+          <tr>
+            <th>商品名</th>
+            <td><%= @like.name %></td>
+          </tr>
+          <tr>
+            <th>商品説明</th>
+            <td><%= simple_format(@like.introduction)%></td>
+          </tr>
+        </table>
+
+        <%= link_to "編集する", edit_like_path(@like), class:"btn btn-success" %>
+        <%#= button_to '削除する', admin_product_path(@product.id), method: :delete, data: { confirm: '本当に消しますか？' }, class:"btn btn-danger"  %>
+      </div>
+    </div>
+  </div>
+</div>

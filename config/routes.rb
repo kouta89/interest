@@ -3,20 +3,22 @@ Rails.application.routes.draw do
   get "/about" => "homes#about"
 
   #顧客用
-  devise_for :customers,skip:[:passwords], controllers:{
-    registrations:"public/registrations",
-    sessions:'public/sessions'
+  devise_for :customers,skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
   }
   #管理者用
-  devise_for :admin,skip: [:registrations,:passwords], controllers:{
-    sessions:'admin/sessions'
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+    sessions: "admin/sessions"
   }
 
+  scope module: :public do
+    resource :customers, only: [:show, :update, :edit]
+    resources :likes
+    
+  end
+
   # namespace　:admin do
-
-  # end
-
-  # scope module: :public do
 
   # end
 

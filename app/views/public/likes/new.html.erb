@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 px-sm-0 offset-sm-1">
+      <h2>趣味投稿</h2>
+    </div>
+    <div class= "row">
+        <div class="col-sm-2 px-sm-0" >
+        <%= form_with model: @like, url: likes_path, local: true do |f| %>
+          <table>
+            <tr>
+              <div class= "from-group">
+                <th><%= f.label :タイトル %></th>
+                <td><%= f.text_field :name, placeholder:"タイトル" %></td>
+              </div>
+            </tr>
+            <tr>
+              <div class="form-group">
+                <th><%= f.label :説明文 %></th>
+                <td><%= f.text_area :introduction, size: "50x8", placeholder:"趣味の説明" %></td>
+              </div>
+            </tr>
+            <tr>
+              <div class= "from-group">
+                <th><% f.label :画像 %></th>
+                <th><%= f.file_field :image, accept: 'image/*' %></th>
+              </div>
+            </tr>
+            <tr>
+              <div class="form-action">
+                <th><%= f.submit "投稿",class:"btn btn-success" %></th>
+              </div>
+            </tr>
+          </table>
+          <% end %>
+        </div>
+    </div>
