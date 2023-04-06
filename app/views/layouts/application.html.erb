@@ -23,36 +23,41 @@
               <!--adminログイン時のヘッダー-->
               <% if admin_signed_in? %>
 
-              
+
               <!--customerログイン時のヘッダー-->
               <% elsif customer_signed_in? %>
+
+                <!--ホーム画面に遷移-->
                 <li class="nav-item mr-2">
-                  ようこそ <%#= link_to customers_path do %>
-                  <strong><%= current_customer.name %></strong>
-                  <%# end %>
-                   さん
+                  <%= link_to root_path do %>
+                  <i class="fas fa-home fa-2x"></i>
+                  <% end %>
                 </li>
+
                 <li class="nav-item">
                   <%#= link_to customers_path, class: 'btn btn-info mr-2' do %>
-                    <i class="fas fa-user"></i>マイページ
+                    <i class="fas fa-user"></i>follower関連
                   <%# end %>
                 </li>
+
+                <li class="nav-item">
+                  <%= link_to  customer_path(current_customer) do %>
+                    <i class="fas fa-user"></i>プロフィール
+                  <% end %>
+                </li>
+
                 <li class="nav-item">
                   <%= link_to  new_like_path, class: 'btn btn-info mr-2' do %>
                     <i class="fas fa-birthday-cake"></i>趣味投稿
                   <% end %>
                 </li>
-                <li class="nav-item">
-                  <%#= link_to carts_path, class: 'btn btn-info mr-2' do %>
-                    <i class="fas fa-cart-arrow-down"></i>カート
-                  <%# end %>
-                </li>
+
                 <li class="nav-item">
                   <%= link_to destroy_customer_session_path, method: :delete, class: 'btn btn-info' do %>
                     <i class="fas fa-sign-out-alt"></i>ログアウト
                   <% end %>
                 </li>
-              
+
               <!--ゲストログイン時のヘッダー-->
               <% else %>
                 <li class="nav-item">

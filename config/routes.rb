@@ -13,9 +13,9 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
-    resource :customers, only: [:show, :update, :edit]
+    resources :customers, only: [:show, :update, :edit]
     resources :likes
-    
+
   end
 
   # namespace　:admin do

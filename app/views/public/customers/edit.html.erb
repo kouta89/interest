@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row my-3">
+    <div class="col-sm-8 px-sm-0 offset-sm-1">
+
+      <h2>プロフィール編集</h2>
+
+      <%#= form_for(resource, as: resource_name, url: customers_path(resource_name), html: { method: :patch }) do |f| %>
+      <%= form_with(model: @customer, url: customer_path, method: :patch) do |f| %>
+        <%#= render "public/shared/error_messages", resource: resource %>
+
+        <div class="row">
+          <div class="col-4 offset-md-1"><%= f.label "プロフィール画像" %></div>
+          <div class="col-3"><%= f.file_field :image, :size => "10" %></div>
+        </div>
+
+        <div class="row">
+          <div class="col-4 offset-md-1"><%= f.label "名前" %></div>
+          <div class="col-3"><%= f.text_field :name, :size => "10" %></div>
+        </div>
+
+        <!--アカウント編集時にプロフィールを入力できるようにフォームを追加-->
+        <div class="row">
+          <div class="col-4 offset-md-1"><%= f.label "プロフィール" %></div>
+          <div class="col-3"><%= f.text_area :profile, :size => "10" %></div>
+        </div>
+
+        <div class="row">
+          <div class="col-4 offset-md-1"><%= f.label "メールアドレス" %></div>
+          <div class="col-3"><%= f.text_field :email, :size => "10" %></div>
+        </div>
+
+        <!--<div class="row">-->
+        <!--  <div class="col-4 offset-md-1"><%#= f.label "新しいパスワード" %></div>-->
+        <!--  <div class="col-3"><%#= f.password_field :password, autocomplete: "new-password" %></div>-->
+        <!--</div>-->
+
+        <!--<div class="row">-->
+        <!--  <div class="col-4 offset-md-1"><%#= f.label "新しいパスワード（確認用）" %></div>-->
+        <!--  <div class="col-3"><%#= f.password_field :password_confirmation, autocomplete: "new-password" %></div>-->
+        <!--</div>-->
+
+        <!--<div class="row">-->
+        <!--  <div class="col-4 offset-md-1"><%#= f.label "現在のパスワード" %></div>-->
+        <!--  <div class="col-3"><%#= f.password_field :current_password, autocomplete: "current-password" %></div>-->
+        <!--</div>-->
+
+        <div class="actions">
+          <%= f.submit "保存する", class: "btn btn-primary btn-sm" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
