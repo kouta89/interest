@@ -11,87 +11,163 @@
   </head>
 
   <body>
-    <header class="border-bottom border-dark">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand" href="/"><h3>おしゃべりるーむ</h3></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+    <!--ヘッダー-->
+    <nav class="navbar navbar-light bg-light p-3">
+      <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
+
+        <!--タイトルロゴ-->
+        <a class="navbar-brand" href="/">
+          おしゃべりるーむ
+        </a>
+
+        <!--アイコンを設定できる-->
+        <!--<button class="navbar-toggler d-md-none collapsed mb-3" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">-->
+        <!--  <span class="navbar-toggler-icon"></span>-->
+        <!--</button>-->
+      </div>
+
+      <!--検索（実装していない）-->
+      <div class="col-12 col-md-4 col-lg-2">
+          <input class="form-control form-control-dark" type="text" placeholder="Search" aria-label="Search">
+      </div>
+
+      <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
+
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+            Profile
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
+
+          <!--ユーザー関連の情報へ遷移-->
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <!--adminログイン時のヘッダー-->
+            <% if admin_signed_in? %>
+            <li>
+              <a class="dropdown-item">
+
+              </a>
+            </li>
+
+            <!--customerログイン時のヘッダー-->
+            <% elsif customer_signed_in? %>
+            <li>
+              <a class="dropdown-item">
+                <%= link_to  customer_path(current_customer) do %><p class="text-left ml-1">プロフィール</p><% end %>
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item">
+                <%= link_to destroy_customer_session_path, method: :delete do %><p class="text-left ml-1">ログアウト</div><% end %>
+              </a>
+            </li>
+
+            <!--ゲストログイン時のヘッダー-->
+            <% else %>
+
+            <!--ログイン画面に遷移-->
+            <li>
+              <a class="dropdown-item">
+                <%= link_to  new_customer_session_path, class: 'btn btn-info mr-2' do%>
+                  <i class="fas fa-sign-in-alt"></i>ログイン
+                <% end %>
+              </a>
+            </li>
+
+            <!--新規登録画面に遷移-->
+            <li>
+              <a class="dropdown-item">
+                <%= link_to new_customer_registration_path, data: {"turbolinks" => false}, class: 'btn btn-info mr-2' do %><i class="fas fa-user-plus"></i>新規登録<% end %>
+              </a>
+            </li>
+
+            <!--管理者ログイン画面に遷移-->
+            <li>
+              <a class="dropdown-item">
+                <%= link_to  new_admin_session_path, class: 'btn btn-info' do%><i class="fas fa-sign-in-alt"></i>管理者ログイン<% end %>
+              </a>
+            </li>
+
+            <% end %>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!--サイドバー-->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="position-sticky pt-md-5 mx-5">
+            <ul class="nav flex-column">
+
               <!--adminログイン時のヘッダー-->
               <% if admin_signed_in? %>
-
 
               <!--customerログイン時のヘッダー-->
               <% elsif customer_signed_in? %>
 
-                <!--ホーム画面に遷移-->
-                <li class="nav-item mr-2">
+              <!--ホーム画面に遷移-->
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page">
                   <%= link_to root_path do %>
-                  <i class="fas fa-home fa-2x"></i>
+                    <i class="fas fa-home fa-2x"></i><span class="mx-2">ホーム</span>
                   <% end %>
-                </li>
+                </a>
+              </li>
 
-                <li class="nav-item">
-                  <%#= link_to customers_path, class: 'btn btn-info mr-2' do %>
-                    <i class="fas fa-user"></i>follower関連
-                  <%# end %>
-                </li>
-
-                <li class="nav-item">
-                  <%= link_to  customer_path(current_customer) do %>
-                    <i class="fas fa-user"></i>プロフィール
+              <!--フォロー関連情報のページに遷移-->
+              <li class="nav-item">
+                <a class="nav-link">
+                  <%= link_to root_path do %>
+                    <i class="fas fa-users fa-2x"></i><span class="mx-2">フォロー</span>
                   <% end %>
-                </li>
+                </a>
+              </li>
 
-                <li class="nav-item">
-                  <%= link_to  new_like_path, class: 'btn btn-info mr-2' do %>
-                    <i class="fas fa-birthday-cake"></i>趣味投稿
+              <li class="nav-item">
+                <a class="nav-link">
+                  <%= link_to  new_like_path do %>
+                    <i class="fas fa-star fa-2x"></i></i><span class="mx-2">趣味を投稿</span>
                   <% end %>
-                </li>
-
-                <li class="nav-item">
-                  <%= link_to destroy_customer_session_path, method: :delete, class: 'btn btn-info' do %>
-                    <i class="fas fa-sign-out-alt"></i>ログアウト
-                  <% end %>
-                </li>
+                </a>
+              </li>
 
               <!--ゲストログイン時のヘッダー-->
               <% else %>
-                <li class="nav-item">
-                  <%#= link_to about_path, class: 'btn btn-info mr-2' do %>
-                    <i class="fas fa-store-alt"></i>About
-                  <%# end %>
-                </li>
-                <li class="nav-item">
-                  <%#= link_to products_path, class: 'btn btn-info mr-2' do %>
-                    <i class="fas fa-birthday-cake"></i>商品一覧
-                  <%# end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to new_customer_registration_path, data: {"turbolinks" => false}, class: 'btn btn-info mr-2' do %>
-                    <i class="fas fa-user-plus"></i>新規登録
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to  new_customer_session_path, class: 'btn btn-info mr-2' do%>
-                    <i class="fas fa-sign-in-alt"></i>ログイン
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to  new_admin_session_path, class: 'btn btn-info' do%>
-                    <i class="fas fa-sign-in-alt"></i>管理者用
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
 
+              <!--ホーム画面に遷移-->
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page">
+                  <%= link_to root_path do %>
+                    <i class="fas fa-home fa-2x"></i>ホーム
+                  <% end %>
+                </a>
+              </li>
+
+              <!--ホーム画面に遷移-->
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page">
+
+                  <%= link_to root_path do %>
+                    <i class="fas fa-home fa-2x"></i>ホーム
+                  <% end %>
+                </a>
+              </li>
+
+              <% end %>
+
+            </ul>
           </div>
         </div>
-      </nav>
-    </header>
-    <%= yield %>
+
+        <div class="col-md-8">
+          <div class="row">
+          <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
