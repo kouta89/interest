@@ -1,7 +1,7 @@
 <div class="container mt-5 mb-5">
 
   <div class="center-block">
-    <h2>おしゃべりるーむをはじめよう！</h2>
+    <h2 class="text-primary mb-4 font-weight-bold">おしゃべりるーむをはじめよう！</h2>
   </div>
 
   <%= form_with model: @customer, url: customer_registration_path, local: true do |f| %>
@@ -35,7 +35,7 @@
     <%= hidden_field_tag :image, @customer.get_profile_image %>
 
     <div class="action center-block">
-      <%= f.submit "登録" %>
+      <%= f.submit "登録", class:"btn btn-primary" %>
     </div>
   <% end %>
 

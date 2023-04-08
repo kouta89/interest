@@ -42,7 +42,7 @@ class Public::LikesController < ApplicationController
   def destroy
     like = Like.find(params[:id])
     like.destroy
-    redirect_to likes_path
+    redirect_to costomers_path
   end
 
   private

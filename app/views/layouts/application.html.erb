@@ -12,7 +12,7 @@
 
   <body>
     <!--ヘッダー-->
-    <nav class="navbar navbar-light bg-light p-3">
+    <nav class="navbar navbar-dark bg-info p-3">
       <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
 
         <!--タイトルロゴ-->
@@ -34,7 +34,7 @@
       <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
 
         <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+          <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
             Profile
           </button>
 
@@ -52,13 +52,13 @@
             <% elsif customer_signed_in? %>
             <li>
               <a class="dropdown-item">
-                <%= link_to  customer_path(current_customer) do %><p class="text-left ml-1">プロフィール</p><% end %>
+                <%= link_to  customer_path(current_customer), :style=>"text-decoration: none; color: #000;" do %>プロフィール<% end %>
               </a>
             </li>
 
             <li>
               <a class="dropdown-item">
-                <%= link_to destroy_customer_session_path, method: :delete do %><p class="text-left ml-1">ログアウト</p><% end %>
+                <%= link_to destroy_customer_session_path, method: :delete, :style=>"text-decoration: none; color: #000;" do %>ログアウト<% end %>
               </a>
             </li>
 
@@ -67,9 +67,9 @@
 
             <!--ログイン画面に遷移-->
             <li>
-              <a class="dropdown-item">
-                <%= link_to  new_customer_session_path, class: 'btn btn-info mr-2' do%>
-                  <i class="fas fa-sign-in-alt"></i>ログイン
+              <a class="dropdown-item link-str">
+                <%= link_to  new_customer_session_path, :style=>"text-decoration: none; color: #000;" do%>
+                  ログイン
                 <% end %>
               </a>
             </li>
@@ -77,14 +77,14 @@
             <!--新規登録画面に遷移-->
             <li>
               <a class="dropdown-item">
-                <%= link_to new_customer_registration_path, data: {"turbolinks" => false}, class: 'btn btn-info mr-2' do %><i class="fas fa-user-plus"></i>新規登録<% end %>
+                <%= link_to new_customer_registration_path, data: {"turbolinks" => false}, :style=>"text-decoration: none; color: #000;" do %>新規登録<% end %>
               </a>
             </li>
 
             <!--管理者ログイン画面に遷移-->
             <li>
               <a class="dropdown-item">
-                <%= link_to  new_admin_session_path, class: 'btn btn-info' do%><i class="fas fa-sign-in-alt"></i>管理者ログイン<% end %>
+                <%= link_to  new_admin_session_path, :style=>"text-decoration: none; color: #000;" do%>管理者ログイン<% end %>
               </a>
             </li>
 
@@ -95,11 +95,12 @@
       </div>
     </nav>
 
-    <!--サイドバー-->
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
-          <div class="position-sticky pt-md-5 mx-5">
+
+        <!--サイドバー-->
+        <div class="col-md-3 bg-light">
+          <div class="position-sticky pt-md-5">
             <ul class="nav flex-column">
 
               <!--adminログイン時のヘッダー-->
@@ -113,6 +114,15 @@
                 <a class="nav-link active" aria-current="page">
                   <%= link_to root_path do %>
                     <i class="fas fa-home fa-2x"></i><span class="mx-2">ホーム</span>
+                  <% end %>
+                </a>
+              </li>
+
+              <!--ユーザー一覧情報のページに遷移-->
+              <li class="nav-item">
+                <a class="nav-link">
+                  <%= link_to customers_path do %>
+                    <i class="fas fa-users fa-2x"></i><span class="mx-2">ユーザーいち</span>
                   <% end %>
                 </a>
               </li>
@@ -162,7 +172,7 @@
           </div>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-9">
           <div class="row">
           <%= yield %>
           </div>

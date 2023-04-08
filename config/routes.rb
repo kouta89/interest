@@ -13,14 +13,14 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
-    resources :customers, only: [:show, :update, :edit]
+    resources :customers, only: [:index, :show, :update, :edit]
     resources :likes
 
   end
 
-  # namespace　:admin do
-
-  # end
+  namespace :admin do
+    resources :customers, only: [:index, :show, :edit, :update]
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

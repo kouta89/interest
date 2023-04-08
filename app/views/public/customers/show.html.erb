@@ -1,42 +1,32 @@
-<div class="container my-5">
+<div class="container">
+
+  <div class="border-right border-left border-bottom p-2 px-4">
+    <h4>プロフィール</h4>
+  </div>
 
   <!-- ユーザーの詳細 -->
-  <div class="row border border-primary">
-    <div class= "col-md-4"></div>
+  <div class="border-right border-left border-bottom p-4">
+    <div class="row">
 
-    <!--プロフィール画像、名前、プロフィール文-->
-    <div class="col-md-2 p-4">
-      <%= image_tag @customer.get_profile_image, size: '100x100' %>
-      <h3><%= @customer.name %></h3>
-      <p><%= @customer.profile %></p>
-    </div>
-    <div class="col-md-2 p-4">
-      <%= link_to "Edit Profile", edit_customer_path(current_customer), class:"btn btn-success my-4" %>
-    </div>
+      <!--プロフィール画像、名前、プロフィール文-->
+      <div class="col-md-8 p-4">
+        <%= image_tag @customer.get_profile_image, size: '100x100',class:"border" %>
+        <h3><%= @customer.name %></h3>
+        <p><%= @customer.profile %></p>
+      </div>
 
-    <!--プロフィール編集ボタン-->
-    <div class= "col-md-4"></div>
+      <!--プロフィール編集ボタン-->
+      <div class="col-md-4 p-4">
+        <%= link_to "Edit Profile", edit_customer_path(current_customer), class:"btn btn-warning my-4" %>
+      </div>
+
+    </div>
   </div>
 
   <!-- ユーザーの投稿一覧 -->
-  <div class="row">
-    <% @likes.each do |like| %>
-    <div class= "col-md-4"></div>
 
-    <div class="col-md-1"><%= image_tag @customer.get_profile_image, size: '50x50' %></div>
-    <div class="col-md-3">
+  <% @likes.each do |l| %>
+  <%= render 'public/likes/like', like: l %>
+  <% end %>
 
-      <%= @customer.name %>
-      <%= link_to like_path(like.id) do %>
-        <%= like.name %>
-      <% end %>
-
-      <div><%= like.introduction %></div>
-
-      <td><%= image_tag like.get_image, size: "160x160" %></td>
-    </div>
-
-    <div class= "col-md-4"></div>
-    <% end %>
-  </div>
 </div>

@@ -1,37 +1,37 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-8 px-sm-0 offset-sm-1">
-      <h2>投稿編集</h2>
+<div class="container mt-5 mb-5">
+
+  <div class="center-block">
+    <h2 class="text-primary mb-4 font-weight-bold">投稿編集</h2>
+  </div>
+
+  <%= form_with model: @like, url: like_path, method: :patch, local: true do |f| %>
+    <%#= render "public/shared/error_messages", resource: resource %>
+
+  <!-- ユーザーの詳細編集 -->
+  <div class="pb-4">
+
+    <!--画像-->
+    <div class= "from-group pb-4">
+      <h4 class="font-weight-bold"><% f.label "画像" %></h4>
+      <%= f.file_field :image, accept: 'image/*' %>
+    </div>
+
+    <!--タイトル-->
+    <div class= "from-group pb-4">
+      <h4 class="font-weight-bold"><%= f.label "タイトル" %></h4>
+      <%= f.text_field :name, class:"form-control" %>
+    </div>
+
+    <!--説明文-->
+    <div class= "from-group pb-4">
+      <h4 class="font-weight-bold"><%= f.label "説明文" %></h4>
+      <%= f.text_area :introduction, size: "50x8", class:"form-control" %>
+    </div>
+
+    <div class="form-action">
+      <%= f.submit "変更を保存", class:"btn btn-success" %>
     </div>
   </div>
-  <div class="row">
-   <%= form_with model: @like, url: like_path, method: :patch, local: true do |f| %>
-   <table>
-    <tr>
-      <div class= "from-group">
-        <th>画像<% f.label :画像 %></th>
-        <th><%= f.file_field :image, accept: 'image/*' %></th>
-      </div>
-    </tr>
-    <tr>
-      <div class= "from-group">
-        <th><%= f.label :タイトル %></th>
-        <td><%= f.text_field :name, placeholder:"タイトル" %></td>
-      </div>
-    </tr>
-    <tr>
-      <div class="form-group">
-        <th>商品説明文<% f.label :商品説明文 %></th>
-        <td><%= f.text_area :introduction, size: "50x8", placeholder:"説明" %></td>
-      </div>
-    </tr>
+  <% end %>
 
-    <tr>
-      <div class="form-action">
-        <td><%= f.submit "変更を保存", class:"btn btn-success" %></td>
-      </div>
-    </tr>
-    <% end %>
-   </table>
-  </div>
 </div>
