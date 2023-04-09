@@ -1,0 +1,30 @@
+<div class="container">
+
+  <div class="border-right border-left border-bottom p-2 px-4">
+    <h4>会員一覧情報</h4>
+  </div>
+
+  <!-- ユーザーの詳細 -->
+  <div class="border-right border-left border-bottom">
+
+    <% @customers.each do |customer| %>
+      <!--プロフィール画像、名前、プロフィール文-->
+      <div class="border-bottom p-2">
+        <div class="row">
+          <span class="mx-3">
+            <%= link_to admin_customer_path(customer.id) do %>
+            <%= image_tag customer.get_profile_image, size: '40x40',class:"border" %>
+            <% end %>
+          </span>
+          <h4>
+            <%= link_to admin_customer_path(customer.id) do %>
+            <%= customer.name %>
+            <% end %>
+            </h4>
+        </div>
+      </div>
+
+    <% end %>
+
+  </div>
+</div>

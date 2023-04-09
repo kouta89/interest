@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
       admin_customers_path
     else
       flash[:success] = 'customerログイン'
-      customers_path
+      root_path
     end
   end
 
