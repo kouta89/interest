@@ -38,27 +38,40 @@
             Profile
           </button>
 
-          <!--ユーザー関連の情報へ遷移-->
+          <!--ユーザー関連の情報-->
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
             <!--adminログイン時のヘッダー-->
             <% if admin_signed_in? %>
+
+            <!--ログアウトする-->
             <li>
               <a class="dropdown-item">
-
+                <%= link_to destroy_admin_session_path, method: :delete, :style=>"text-decoration: none; color: #000;" do %>ログアウト<% end %>
               </a>
             </li>
 
             <!--customerログイン時のヘッダー-->
             <% elsif customer_signed_in? %>
+
+            <!--プロフィールに遷移-->
             <li>
               <a class="dropdown-item">
                 <%= link_to  customer_path(current_customer), :style=>"text-decoration: none; color: #000;" do %>プロフィール<% end %>
               </a>
             </li>
 
+            <!--ログアウトする-->
             <li>
               <a class="dropdown-item">
                 <%= link_to destroy_customer_session_path, method: :delete, :style=>"text-decoration: none; color: #000;" do %>ログアウト<% end %>
+              </a>
+            </li>
+
+            <!--退会する-->
+            <li>
+              <a class="dropdown-item">
+                <%= link_to unsubscribe_path(current_customer), :style=>"text-decoration: none; color: #F00;" do %>退会<% end %>
               </a>
             </li>
 
@@ -99,12 +112,30 @@
       <div class="row">
 
         <!--サイドバー-->
-        <div class="col-md-3 bg-light">
+        <div class="border col-md-3 bg-light">
           <div class="position-sticky pt-md-5">
             <ul class="nav flex-column">
 
               <!--adminログイン時のヘッダー-->
               <% if admin_signed_in? %>
+
+              <!--ホーム画面に遷移-->
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page">
+                  <%= link_to root_path do %>
+                    <i class="fas fa-home fa-2x"></i><span class="mx-2">ホーム</span>
+                  <% end %>
+                </a>
+              </li>
+
+              <!--ユーザー一覧に遷移-->
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page">
+                  <%= link_to admin_customers_path do %>
+                    <i class="fas fa-user fa-2x"></i><span class="mx-2">会員一覧</span>
+                  <% end %>
+                </a>
+              </li>
 
               <!--customerログイン時のヘッダー-->
               <% elsif customer_signed_in? %>

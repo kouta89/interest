@@ -7,23 +7,39 @@
   <!-- ユーザーの詳細 -->
   <div class="border-right border-left border-bottom">
 
-    <% @customers.each do |customer| %>
-      <!--プロフィール画像、名前、プロフィール文-->
-      <div class="border-bottom p-2">
-        <div class="row">
-          <span class="mx-3">
-            <%= link_to admin_customer_path(customer.id) do %>
-            <%= image_tag customer.get_profile_image, size: '40x40',class:"border" %>
-            <% end %>
-          </span>
-          <h4>
-            <%= link_to admin_customer_path(customer.id) do %>
-            <%= customer.name %>
-            <% end %>
-            </h4>
-        </div>
+    <!--プロフィール画像、名前、プロフィール文-->
+    <div class="border-bottom p-2">
+
+      <div class="row">
+        <div class="col-1 mx-3 font-weight-bold"></div>
+        <div class="col-7 font-weight-bold">名前</div>
+        <div class="col-3 font-weight-bold">退会ステータス</div>
       </div>
 
+    </div>
+
+    <% @customers.each do |customer| %>
+    <div class="border-bottom p-2">
+      <div class="row">
+        <span class="col-1 mx-3">
+          <%= link_to admin_customer_path(customer.id) do %>
+          <%= image_tag customer.get_profile_image, size: '40x40',class:"border" %>
+          <% end %>
+        </span>
+        <h4 class="col-7">
+          <%= link_to admin_customer_path(customer.id) do %>
+          <%= customer.name %>
+          <% end %>
+        </h4>
+        <div class="col-3">
+          <% if customer.is_deleted %>
+            <span class="text-secondary font-weight-bold">退会</span>
+          <% else %>
+            <span class="text-success font-weight-bold">有効</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
     <% end %>
 
   </div>

@@ -7,6 +7,11 @@ class Customer < ApplicationRecord
   has_many :Favorites
   has_many :comments
   
+  # is_deletedがfalseならtrueを返すようにしている
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
+  
   # フォローをした、されたの関係
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy

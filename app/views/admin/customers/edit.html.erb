@@ -1,0 +1,26 @@
+<div class="container mt-5 mb-5">
+
+  <div class="center-block">
+    <h2 class="text-primary mb-4 font-weight-bold">退会ステータス</h2>
+  </div>
+
+  <%= form_with(model: @customer, url: admin_customer_path, method: :patch) do |f| %>
+    <%#= render "public/shared/error_messages", resource: resource %>
+
+    <!--退会ステータス-->
+    <div class="pb-4">
+      <%= f.label :"会員ステータス", class: "col-sm-4 control-label" %>
+    　<%= f.radio_button :is_deleted, true %>
+    　<%= f.label :is_deleted, "退会", {value: :true, style: "display: inline-block;"} %>
+    　<%= f.radio_button :is_deleted, false %>
+    　<%= f.label :is_deleted, "有効", {value: :false, style: "display: inline-block;"} %>
+    </div>
+
+    <div class="actions  col-9 col-offset-4">
+      <%= f.submit '変更を保存する' ,class: "btn btn-success" %>
+    </div>
+
+  </div>
+  <% end %>
+
+</div>

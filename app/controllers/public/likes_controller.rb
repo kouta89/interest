@@ -32,7 +32,7 @@ class Public::LikesController < ApplicationController
     @like = Like.find(params[:id])
     if @like.update(like_params)
       flash[:success] = "商品の更新が完了しました。"
-      redirect_to likes_path(@like)
+      redirect_to like_path(@like)
     else
       flash[:danger] = "商品の更新に失敗しました。"
       render :edit

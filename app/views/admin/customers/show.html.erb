@@ -1,0 +1,43 @@
+<div class="container">
+
+  <div class="border-right border-left border-bottom p-2 px-4">
+    <h4>プロフィール</h4>
+  </div>
+
+  <!-- ユーザーの詳細 -->
+  <div class="border-right border-left border-bottom p-4">
+    <div class="row">
+
+      <!--プロフィール画像、名前、プロフィール文-->
+      <div class="col-md-7 p-4">
+        <%= image_tag @customer.get_profile_image, size: '100x100',class:"border" %>
+        <h3><%= @customer.name %></h3>
+        <p><%= @customer.profile %></p>
+      </div>
+
+      <!--退会ステータス編集ボタン-->
+      <div class="col-md-5 p-4">
+        <div class="row">
+        <% if @customer.is_deleted %>
+          退会ステータス：
+          <h2 class="text-secondary font-weight-bold">退会</h2>
+        <% else %>
+          退会ステータス：
+          <h2 class="text-success font-weight-bold">有効</h2>
+        <% end %>
+        </div>
+
+        <%= link_to "退会ステータス編集", edit_admin_customer_path(@customer.id), class:"btn btn-warning my-4" %>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ユーザーの投稿一覧 -->
+
+  <% @likes.each do |l| %>
+  <%= render 'public/likes/like', like: l %>
+  <% end %>
+
+</div>

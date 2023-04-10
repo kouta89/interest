@@ -7,8 +7,25 @@
 
     <!--ユーザー名とタイトル-->
     <div class="col-8 py-2">
-      <p class="font-weight-bold mb-2"><%= link_to customer_path(like.customer.id) do %><%= like.customer.name %><% end %></p>
-      <p class="mb-0"><%= link_to like_path(like.id) do %><%= like.name %><% end %></p>
+      <p class="font-weight-bold mb-2">
+        <% if admin_signed_in? %>
+          <%= link_to admin_customer_path(like.customer.id) do %><%= like.customer.name %><% end %>
+        <% elsif customer_signed_in? %>
+          <%= link_to customer_path(like.customer.id) do %><%= like.customer.name %><% end %>
+        <% else %>
+          <%= link_to customer_path(like.customer.id) do %><%= like.customer.name %><% end %>
+        <% end %>
+      </p>
+
+      <p class="mb-0">
+        <% if admin_signed_in? %>
+          <%= link_to admin_like_path(like.id) do %><%= like.name %><% end %>
+        <% elsif customer_signed_in? %>
+          <%= link_to like_path(like.id) do %><%= like.name %><% end %>
+        <% else %>
+          <%= link_to like_path(like.id) do %><%= like.name %><% end %>
+        <% end %>
+      </p>
     </div>
 
     <!--投稿の編集と削除-->
