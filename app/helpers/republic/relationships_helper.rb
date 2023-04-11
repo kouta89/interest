@@ -1,0 +1,2 @@
+module Republic::RelationshipsHelper
+end

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :republic do
+    get 'relationships/followings'
+    get 'relationships/followers'
+  end
   root :to =>"homes#top"
   get "/about" => "homes#about"
 
@@ -13,13 +17,16 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
-    resources :customers, only: [:index, :show, :update, :edit]
+    resources :customers, only: [:index, :show, :update, :edit]do
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
     # 退会確認画面
     get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     # 論理削除用のルーティング
     patch '/customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
     resources :likes
-
   end
 
   namespace :admin do

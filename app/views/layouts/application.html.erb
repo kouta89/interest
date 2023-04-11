@@ -161,7 +161,7 @@
               <!--フォロー関連情報のページに遷移-->
               <li class="nav-item">
                 <a class="nav-link">
-                  <%= link_to root_path do %>
+                  <%= link_to customer_followings_path(current_customer.id) do %>
                     <i class="fas fa-users fa-2x"></i><span class="mx-2">フォロー</span>
                   <% end %>
                 </a>

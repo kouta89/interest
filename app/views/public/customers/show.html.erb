@@ -20,6 +20,13 @@
         <% if customer_signed_in? %>
           <% if current_customer.id == @customer.id %>
             <%= link_to "Edit Profile", edit_customer_path(current_customer), class:"btn btn-warning my-4" %>
+          <% else %>
+            <!--フォロー機能-->
+            <% if current_customer.following?(@customer) %>
+              <%= link_to "フォロー外す", customer_relationships_path(@customer.id), method: :delete, class: "btn btn-primary btn-sm mt-2" %>
+            <% else %>
+              <%= link_to "フォローする", customer_relationships_path(@customer.id), method: :post, class: "btn btn-primary btn-sm mt-2" %>
+            <% end %>
           <% end %>
         <% end %>
       </div>
