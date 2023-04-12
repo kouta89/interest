@@ -13,9 +13,9 @@ h1 {
 }
 
 .wrap {
-  width: 90%;
-  max-width: 800px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 825px;
+  margin: 0;
 }
 
 #tab-menu {
@@ -24,7 +24,7 @@ h1 {
 
 #tab-menu li {
   list-style-type: none;
-  width: 25%;
+  width: 50%;
 }
 
 #tab-menu li a {
@@ -34,8 +34,7 @@ h1 {
   padding: 20px;
   text-align: center;
   background: #000;
-  border: 1px solid #000;
-  border-bottom: none;
+  border: 1px solid #c0c0c0;
 }
 
 #tab-menu .active {
@@ -50,13 +49,22 @@ h1 {
 
 #tab-contents .tab {
   width: 100%;
-  padding: 30px;
+  padding: 0 15px;
   background: #fff;
-  border: 1px solid #000;
-  border-top: none;
+  border: 1px solid #dee2e6;
+}
+
+#tab-contents .tab .row {
+  padding: 10px 0;
+  border-bottom: 1px solid #dee2e6;
 }
 
 #tab-contents p {
-  color: #000;
+  color: #dee2e6;
   line-height: 2.5;
+}
+
+#content-lists {
+  padding: 10px 15px;
+  border-bottom: 1px solid #dee2e6;
 }

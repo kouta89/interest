@@ -1,8 +1,9 @@
 <div class="border-right border-left border-bottom p-4">
   <div class="row">
 
+    <!--ユーザー画像-->
     <div class="col-2 pr-0 py-2">
-      <%= image_tag like.customer.get_profile_image, size: "60x60",class:"border" %>
+      <%= image_tag like.customer.get_profile_image, size: "60x60",class:"border d-block mx-auto" %>
     </div>
 
     <!--ユーザー名とタイトル-->
@@ -29,7 +30,7 @@
     </div>
 
     <!--投稿の編集と削除-->
-    <% if customer_signed_in? %>
+    <% if customer_signed_in? %><!--ログインしているとき-->
       <% if current_customer.id == like.customer.id %>
         <div class="dropdown col-2 py-2">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
@@ -56,6 +57,30 @@
   <div class="m-4">
     <p class="mt-2"><%= like.introduction %></p>
     <div><%= image_tag like.get_image, size: "260x180" %></div>
+
+    <% if customer_signed_in? %> <!-- ログインしているとき -->
+      <% if like.favorited?(current_customer) %>
+
+        <!-- すでにいいね済みの場合はいいねを解除 -->
+        <%= link_to like_favorites_path(like.id), method: :delete do %>
+          <div>
+            <span style="color:red;">❤</span>
+            <%= like.favorites.count %>
+          </div>
+        <% end %>
+
+      <% else %>
+
+        <!-- まだいいねしていない場合はいいね登録 -->
+        <%= link_to like_favorites_path(like.id), method: :post do %>
+        <div>
+          <span>♡</span>
+          <%= like.favorites.count %>
+        </div>
+        <% end %>
+
+      <% end %>
+    <% end %>
   </div>
 
 </div>

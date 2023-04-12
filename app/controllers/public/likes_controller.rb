@@ -22,6 +22,8 @@ class Public::LikesController < ApplicationController
 
   def show
     @like = Like.find(params[:id])
+    @comments = @like.comments
+    @comment = Comment.new
   end
 
   def edit
