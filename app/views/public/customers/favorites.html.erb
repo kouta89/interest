@@ -1,0 +1,13 @@
+<div class="container">
+
+  <div class="border-right border-left border-bottom p-2">
+    <h4>投稿記事</h4>
+  </div>
+
+<!-- ユーザーの投稿一覧 -->
+
+  <% @like_Favorites.each do |l| %>
+  <%= render 'public/likes/like', like: l %>
+  <% end %>
+
+</div>

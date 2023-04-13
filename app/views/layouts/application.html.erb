@@ -29,6 +29,7 @@
       <!--検索（実装していない）-->
       <div class="col-12 col-md-4 col-lg-2">
           <input class="form-control form-control-dark" type="text" placeholder="Search" aria-label="Search">
+          <%= render 'searches/search' %>
       </div>
 
       <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
@@ -152,8 +153,8 @@
               <!--ユーザー一覧情報のページに遷移-->
               <li class="nav-item">
                 <a class="nav-link">
-                  <%= link_to customers_path do %>
-                    <i class="fas fa-users fa-2x"></i><span class="mx-2">ユーザーいち</span>
+                  <%= link_to favorites_customer_path(current_customer) do %>
+                    <i class="fas fa-users fa-2x"></i><span class="mx-2">いいねした投稿</span>
                   <% end %>
                 </a>
               </li>

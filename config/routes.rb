@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  namespace :republic do
-    get 'relationships/followings'
-    get 'relationships/followers'
-  end
   root :to =>"homes#top"
   get "/about" => "homes#about"
+
+  # 検索
+  get "search" => "searches#search"
 
   #顧客用
   devise_for :customers,skip: [:passwords], controllers: {
@@ -20,6 +19,9 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :update, :edit]do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
+      member do
+        get :favorites
+      end
     end
     # 退会確認画面
     get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'

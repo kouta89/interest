@@ -64,7 +64,7 @@
         <!-- すでにいいね済みの場合はいいねを解除 -->
         <%= link_to like_favorites_path(like.id), method: :delete do %>
           <div>
-            <span style="color:red;">❤</span>
+            <span style="color:red;">♥</span>
             <%= like.favorites.count %>
           </div>
         <% end %>
@@ -80,6 +80,9 @@
         <% end %>
 
       <% end %>
+    <% else %>
+      <span>♡</span>
+      <%= like.favorites.count %>
     <% end %>
   </div>
 

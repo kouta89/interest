@@ -1,7 +1,14 @@
 class Public::CustomersController < ApplicationController
+  
   def show
     @customer = Customer.find(params[:id])
     @likes = @customer.likes
+  end
+
+  def favorites
+    @customer = Customer.find(params[:id])
+    favorites = Favorite.where(customer_id: @customer.id).pluck(:like_id)
+    @like_Favorites = Like.find(favorites)
   end
 
   def edit
@@ -31,4 +38,5 @@ class Public::CustomersController < ApplicationController
   def update_params
     params.require(:customer).permit(:image, :name, :profile)
   end
+
 end
