@@ -10,21 +10,21 @@
     <div class="col-8 py-2">
       <p class="font-weight-bold mb-2">
         <% if admin_signed_in? %>
-          <%= link_to admin_customer_path(like.customer.id) do %><%= like.customer.name %><% end %>
+          <%= link_to admin_customer_path(like.customer.id), :style=>"text-decoration: none; color: #000;" do %><%= like.customer.name %><% end %>
         <% elsif customer_signed_in? %>
-          <%= link_to customer_path(like.customer.id) do %><%= like.customer.name %><% end %>
+          <%= link_to customer_path(like.customer.id), :style=>"text-decoration: none; color: #000;" do %><%= like.customer.name %><% end %>
         <% else %>
-          <%= link_to customer_path(like.customer.id) do %><%= like.customer.name %><% end %>
+          <%= link_to customer_path(like.customer.id), :style=>"text-decoration: none; color: #000;" do %><%= like.customer.name %><% end %>
         <% end %>
       </p>
 
       <p class="mb-0">
         <% if admin_signed_in? %>
-          <%= link_to admin_like_path(like.id) do %><%= like.name %><% end %>
+          <%= link_to admin_like_path(like.id), :style=>"text-decoration: none; color: #000;" do %><%= like.name %><% end %>
         <% elsif customer_signed_in? %>
-          <%= link_to like_path(like.id) do %><%= like.name %><% end %>
+          <%= link_to like_path(like.id), :style=>"text-decoration: none; color: #000;" do %><%= like.name %><% end %>
         <% else %>
-          <%= link_to like_path(like.id) do %><%= like.name %><% end %>
+          <%= link_to like_path(like.id), :style=>"text-decoration: none; color: #000;" do %><%= like.name %><% end %>
         <% end %>
       </p>
     </div>
@@ -39,12 +39,12 @@
           <ul class="dropdown-menu px-2" aria-labelledby="dropdownMenuButton">
             <li>
               <a class="dropdown-item">
-                <%= link_to edit_like_path(like.id) do %><p class="m-0">編集</p><% end %>
+                <%= link_to edit_like_path(like.id), :style=>"text-decoration: none; color: #000;" do %><p class="m-0">編集</p><% end %>
               </a>
             </li>
             <li>
               <a class="dropdown-item">
-                <%= link_to like_path(like.id), method: :delete, data: { confirm: '本当に消しますか？' } do %><p class="m-0">削除</p><% end %>
+                <%= link_to like_path(like.id), method: :delete, :style=>"text-decoration: none; color: #000;", data: { confirm: '本当に消しますか？' } do %><p class="m-0">削除</p><% end %>
               </a>
             </li>
           </ul>
@@ -58,13 +58,22 @@
     <p class="mt-2"><%= like.introduction %></p>
     <div><%= image_tag like.get_image, size: "260x180" %></div>
 
+    <div class="row m-2">
+
+    <!-- コメント数の可視化 -->
+    <div class ="mx-2">
+      <i class="fas fa-comment-dots"></i>
+      <%= like.comments.count %>
+    </div>
+
     <% if customer_signed_in? %> <!-- ログインしているとき -->
+
       <% if like.favorited?(current_customer) %>
 
         <!-- すでにいいね済みの場合はいいねを解除 -->
-        <%= link_to like_favorites_path(like.id), method: :delete do %>
-          <div>
-            <span style="color:red;">♥</span>
+        <%= link_to like_favorites_path(like.id), method: :delete, :style=>"text-decoration: none; color: #000;" do %>
+          <div class ="mx-2">
+            <i class="fas fa-heart" style="color: red;"></i>
             <%= like.favorites.count %>
           </div>
         <% end %>
@@ -72,18 +81,22 @@
       <% else %>
 
         <!-- まだいいねしていない場合はいいね登録 -->
-        <%= link_to like_favorites_path(like.id), method: :post do %>
-        <div>
-          <span>♡</span>
+        <%= link_to like_favorites_path(like.id), method: :post, :style=>"text-decoration: none; color: #000;" do %>
+        <div class ="mx-2">
+          <i class="fas fa-heart"></i>
           <%= like.favorites.count %>
         </div>
         <% end %>
 
       <% end %>
-    <% else %>
-      <span>♡</span>
-      <%= like.favorites.count %>
-    <% end %>
-  </div>
 
+    <% else %>
+      <div class ="mx-2">
+        <i class="fas fa-heart"></i>
+        <%= like.favorites.count %>
+      </div>
+    <% end %>
+    </div>
+
+  </div>
 </div>

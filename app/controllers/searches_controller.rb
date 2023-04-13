@@ -4,10 +4,10 @@ class SearchesController < ApplicationController
   def search
     @range = params[:range]
 
-    if @range == "Customer"
-      @customers = Customer.looks(params[:search], params[:word])
+    if @range == "ユーザー名"
+      @customers = Customer.looks(params[:word])
     else
-      @likes = Like.looks(params[:search], params[:word])
+      @likes = Like.looks(params[:word])
     end
   end
 end

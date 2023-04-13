@@ -9,18 +9,8 @@ class Like < ApplicationRecord
   end
 
   # 検索方法分岐
-  def self.looks(search, word)
-    if search == "perfect_match"
-      @like = Like.where("title LIKE?","#{word}")
-    elsif search == "forward_match"
-      @like = Like.where("title LIKE?","#{word}%")
-    elsif search == "backward_match"
-      @like = Like.where("title LIKE?","%#{word}")
-    elsif search == "partial_match"
-      @like = Like.where("title LIKE?","%#{word}%")
-    else
-      @like = Like.all
-    end
+  def self.looks(word)
+    @like = Like.where("name LIKE?","%#{word}%")
   end
 
   has_one_attached :image

@@ -14,12 +14,12 @@
         <div class="row">
 
           <span class="col-1 mx-3">
-            <%= link_to customer_path(customer.id) do %>
+            <%= link_to customer_path(customer.id), :style=>"text-decoration: none; color: #000;" do %>
             <%= image_tag customer.get_profile_image, size: '40x40',class:"border" %>
             <% end %>
           </span>
           <div class="col-7">
-            <%= link_to customer_path(customer.id) do %>
+            <%= link_to customer_path(customer.id), :style=>"text-decoration: none; color: #000;" do %>
             <h4><%= customer.name %></h4>
             <% end %>
 
@@ -30,7 +30,7 @@
             <% if current_customer.following?(customer) %>
               <%= link_to "フォロー外す", customer_relationships_path(customer.id), method: :delete, class: "btn btn-primary btn-sm mt-2" %>
             <% else %>
-              <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post %>
+              <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, class: "btn btn-primary btn-sm mt-2" %>
             <% end %>
           </div>
 
@@ -47,12 +47,12 @@
 
           <% @followers.each do |customer| %>
           <span class="col-1 mx-3">
-            <%= link_to customer_path(customer.id) do %>
+            <%= link_to customer_path(customer.id), :style=>"text-decoration: none; color: #000;" do %>
             <%= image_tag customer.get_profile_image, size: '40x40',class:"border" %>
             <% end %>
           </span>
           <div class="col-7">
-            <%= link_to customer_path(customer.id) do %>
+            <%= link_to customer_path(customer.id), :style=>"text-decoration: none; color: #000;" do %>
             <h4><%= customer.name %></h4>
             <% end %>
 
@@ -63,7 +63,7 @@
             <% if current_customer.following?(customer) %>
               <%= link_to "フォロー外す", customer_relationships_path(customer.id), method: :delete, class: "btn btn-primary btn-sm mt-2" %>
             <% else %>
-              <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post %>
+              <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, class: "btn btn-primary btn-sm mt-2" %>
             <% end %>
           </div>
 

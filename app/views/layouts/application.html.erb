@@ -13,7 +13,7 @@
   <body>
     <!--ヘッダー-->
     <nav class="navbar navbar-dark bg-info p-3">
-      <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
+      <div class="d-flex col-md-3 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
 
         <!--タイトルロゴ-->
         <a class="navbar-brand" href="/">
@@ -27,12 +27,11 @@
       </div>
 
       <!--検索（実装していない）-->
-      <div class="col-12 col-md-4 col-lg-2">
-          <input class="form-control form-control-dark" type="text" placeholder="Search" aria-label="Search">
-          <%= render 'searches/search' %>
+      <div class="col-md-6">
+        <%= render 'searches/search' %>
       </div>
 
-      <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
+      <div class="col-md-3 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
 
         <div class="dropdown">
           <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
@@ -114,7 +113,7 @@
 
         <!--サイドバー-->
         <div class="border col-md-3 bg-light">
-          <div class="position-sticky pt-md-5">
+          <div class="position-sticky py-md-5">
             <ul class="nav flex-column">
 
               <!--adminログイン時のヘッダー-->
@@ -123,7 +122,7 @@
               <!--ホーム画面に遷移-->
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page">
-                  <%= link_to root_path do %>
+                  <%= link_to root_path, :style=>"text-decoration: none; color: #000;" do %>
                     <i class="fas fa-home fa-2x"></i><span class="mx-2">ホーム</span>
                   <% end %>
                 </a>
@@ -132,7 +131,7 @@
               <!--ユーザー一覧に遷移-->
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page">
-                  <%= link_to admin_customers_path do %>
+                  <%= link_to admin_customers_path, :style=>"text-decoration: none; color: #000;" do %>
                     <i class="fas fa-user fa-2x"></i><span class="mx-2">会員一覧</span>
                   <% end %>
                 </a>
@@ -144,7 +143,7 @@
               <!--ホーム画面に遷移-->
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page">
-                  <%= link_to root_path do %>
+                  <%= link_to root_path, :style=>"text-decoration: none; color: #000;" do %>
                     <i class="fas fa-home fa-2x"></i><span class="mx-2">ホーム</span>
                   <% end %>
                 </a>
@@ -153,7 +152,7 @@
               <!--ユーザー一覧情報のページに遷移-->
               <li class="nav-item">
                 <a class="nav-link">
-                  <%= link_to favorites_customer_path(current_customer) do %>
+                  <%= link_to favorites_customer_path(current_customer), :style=>"text-decoration: none; color: #000;" do %>
                     <i class="fas fa-users fa-2x"></i><span class="mx-2">いいねした投稿</span>
                   <% end %>
                 </a>
@@ -162,7 +161,7 @@
               <!--フォロー関連情報のページに遷移-->
               <li class="nav-item">
                 <a class="nav-link">
-                  <%= link_to customer_followings_path(current_customer.id) do %>
+                  <%= link_to customer_followings_path(current_customer.id), :style=>"text-decoration: none; color: #000;" do %>
                     <i class="fas fa-users fa-2x"></i><span class="mx-2">フォロー</span>
                   <% end %>
                 </a>
@@ -170,7 +169,7 @@
 
               <li class="nav-item">
                 <a class="nav-link">
-                  <%= link_to  new_like_path do %>
+                  <%= link_to  new_like_path, :style=>"text-decoration: none; color: #000;" do %>
                     <i class="fas fa-star fa-2x"></i></i><span class="mx-2">趣味を投稿</span>
                   <% end %>
                 </a>
@@ -182,7 +181,7 @@
               <!--ホーム画面に遷移-->
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page">
-                  <%= link_to root_path do %>
+                  <%= link_to root_path, :style=>"text-decoration: none; color: #000;" do %>
                     <i class="fas fa-home fa-2x"></i>ホーム
                   <% end %>
                 </a>
@@ -192,7 +191,7 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page">
 
-                  <%= link_to root_path do %>
+                  <%= link_to root_path, :style=>"text-decoration: none; color: #000;" do %>
                     <i class="fas fa-home fa-2x"></i>ホーム
                   <% end %>
                 </a>

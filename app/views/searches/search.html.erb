@@ -1,24 +1,71 @@
-<h2>Results index</h2>
+<div class="container">
 
-<table class="table table-hover table-inverse">
-  <!--検索対象モデルがUserの時 -->
-  <% if @range == "Customer" %>
-    <tbody>
-      <% @customers.each do |customer| %>
-        <tr>
-          <td><%= customer.name %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% else %>
-    <!--検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
-    <tbody>
-      <% @likes.each do |like| %>
-        <tr>
-          <td><%= like.title %></td>
-          <td><%= like.body %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% end %>
-</table>
+  <div class="border-right border-left border-bottom p-2 px-4">
+    <h4>ヒットしたユーザー</h4>
+  </div>
+
+  <!-- ユーザーの詳細 -->
+  <div class="border-right border-left border-bottom">
+
+    <!--プロフィール画像、名前、プロフィール文-->
+    <div class="border-bottom p-2">
+
+      <div class="row">
+        <% if @range == "ユーザー名" %>
+        <div class="col-1 mx-3 font-weight-bold"></div>
+        <div class="col-10 font-weight-bold">名前</div>
+        <% else %>
+        <div class="col-1 mx-3 font-weight-bold"></div>
+        <div class="col-10 font-weight-bold">タイトル</div>
+        <% end %>
+      </div>
+
+    </div>
+
+    <div class="border-bottom p-2">
+      <div class="row">
+
+        <% if @range == "ユーザー名" %>
+
+          <% @customers.each do |customer| %>
+
+            <span class="col-1 mx-3">
+              <%= link_to customer_path(customer.id) do %>
+              <%= image_tag customer.get_profile_image, size: '40x40',class:"border" %>
+              <% end %>
+            </span>
+
+            <div class="col-10">
+              <%= link_to customer_path(customer.id), :style=>"text-decoration: none; color: #000;" do %>
+              <h4 class="font-weight-bold"><%= customer.name %></h4>
+              <% end %>
+            </div>
+
+          <% end %>
+
+        <% else %>
+
+          <% @likes.each do |like| %>
+
+            <span class="col-1 mx-3">
+              <%= link_to customer_path(like.customer.id) do %>
+              <%= image_tag like.customer.get_profile_image, size: '40x40',class:"border" %>
+              <% end %>
+            </span>
+
+            <div class="col-10">
+              <%= link_to like_path(like.id), :style=>"text-decoration: none; color: #000;" do %>
+              <h4 class="font-weight-bold"><%= like.name %></h4>
+              <% end %><br>
+              <%= like.introduction %>
+            </div>
+
+          <% end %>
+
+        <% end %>
+
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -8,8 +8,9 @@ class Public::CommentsController < ApplicationController
   end
 
   def destroy
-    Comment.find(params[:id]).destroy
-    redirect_to like_path(params[:like_id])
+    Comment.find_by(id: params[:id],like_id: params[:like_id]).destroy
+    like = Like.find(params[:like_id])
+    redirect_to like_path(like)
   end
 
   private
