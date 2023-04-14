@@ -7,6 +7,10 @@ class Customer < ApplicationRecord
   has_many :comments
   has_many :favorites,dependent: :destroy
 
+  # タグ関連
+  has_many :like_tags, dependent: :destroy
+  has_many :tags, through: :like_tags
+
   # is_deletedがfalseならtrueを返すようにしている
   def active_for_authentication?
     super && (is_deleted == false)

@@ -19,6 +19,11 @@
       <%= f.text_area :introduction, size: "50x8", placeholder:"趣味の説明", class:"form-control" %>
     </div>
 
+    <!--タグ-->
+    <div class= "from-group mb-4">
+      <%= f.text_field :tag_name, size: "50x8", placeholder:"タグの追加", class:"form-control" %>
+    </div>
+
     <!--画像-->
     <div class= "from-group mb-4">
       <%= f.file_field :image, accept: 'image/*' %>

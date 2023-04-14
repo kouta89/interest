@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   root :to =>"homes#top"
   get "/about" => "homes#about"
+  
+  #タグによって絞り込んだ投稿を表示するアクションへのルーティング
+  resources :tags do
+    get 'likes', to: 'likes#search'
+  end
 
   # 検索
   get "search" => "searches#search"

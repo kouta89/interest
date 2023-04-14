@@ -1,10 +1,7 @@
 <div class="container">
 
   <% @tag_list.each do |list| %>
-    <%#= link_to list.name, like_tags_path(tag_id: list.id), :style=>"text-decoration: none; color: #000;" do %>
-    <%= list.name %>
-    <%# end %>
-    <%="(#{list.posts.count})" %>
+    <%= link_to list.name, tag_likes_path(like_tag_id: list.id), :style=>"text-decoration: none; color: #000;" do %><%= list.likes.count %><% end %>
   <% end %>
 
   <div class="border-right border-left border-bottom p-2">
@@ -14,7 +11,6 @@
 <!-- ユーザーの投稿一覧 -->
 
   <% @likes.each do |l| %>
-  <i class="fas fa-tag"><%= l.tags.map(&:name).join(', ') %></i>
   <div id="favorite_buttons_<%= book.id %>">
     <%= render 'public/likes/like', like: l %>
   </div>
