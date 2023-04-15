@@ -37,7 +37,7 @@
   <!-- ユーザーの投稿一覧 -->
 
   <% @likes.each do |l| %>
-  <div id="favorite_buttons_<%= book.id %>">
+  <div id="favorite_buttons_<%= l.id %>">
     <%= render 'public/likes/like', like: l %>
   </div>
   <% end %>

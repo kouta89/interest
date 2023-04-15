@@ -12,7 +12,7 @@ class Public::LikesController < ApplicationController
 
     @like = Like.new(like_params)
     @like.customer_id = current_customer.id
-    tag_list = params[:like][:name].split(nil)
+    tag_list = params[:like][:name].split(",")
 
     if @like.save
       @like.save_tag(tag_list)

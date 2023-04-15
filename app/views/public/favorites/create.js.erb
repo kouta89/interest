@@ -1,1 +1,1 @@
-$('#favorite_buttons_<%= @like.id %>').html("<%= j(render "favorites/favorite", like: @like) %>");
+$('#favorite_buttons_<%= @like.id %>').html("<%= j(render "public/likes/like", like: @like) %>");

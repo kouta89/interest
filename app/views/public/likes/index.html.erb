@@ -15,7 +15,7 @@
 
   <% @likes.each do |l| %>
   <i class="fas fa-tag"><%= l.tags.map(&:name).join(', ') %></i>
-  <div id="favorite_buttons_<%= book.id %>">
+  <div id="favorite_buttons_<%= @likes.id %>">
     <%= render 'public/likes/like', like: l %>
   </div>
   <% end %>
