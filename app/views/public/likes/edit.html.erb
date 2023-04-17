@@ -28,6 +28,13 @@
       <%= f.text_area :introduction, size: "50x8", class:"form-control" %>
     </div>
 
+    <!--タグ-->
+    <div class= "from-group mb-4">
+      <h4 class="font-weight-bold"><%= f.label "タグ" %></h4>
+      <%= f.label "( , で区切ると複数タグが選択できます)" %>
+      <%= f.text_field :tag_name, size: "50x8", class:"form-control" %>
+    </div>
+
     <div class="form-action">
       <%= f.submit "変更を保存", class:"btn btn-success" %>
     </div>

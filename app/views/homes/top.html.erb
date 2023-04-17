@@ -1,16 +1,21 @@
 <div class="container">
 
   <div class="border-right border-left border-bottom p-2">
-    <h4>投稿記事</h4>
+    <h4>フォローしたユーザーの投稿</h4>
   </div>
-
-
 
   <!-- ユーザーの投稿一覧 -->
-  <% @likes.each do |l| %>
-  <div id="favorite_buttons_<%= l.id %>">
-  <%= render 'public/likes/like', like: l %>
-  </div>
+  <% @followings.each do |customer| %>
+
+    <% @likes.each do |l| %>
+
+    <% if l.customer.id == customer.id %>
+      <div id="favorite_buttons_<%= l.id %>">
+      <%= render 'public/likes/like', like: l %>
+      </div>
+      <% end %>
+    <% end %>
+
   <% end %>
 
 </div>

@@ -4,7 +4,15 @@ class Public::LikesController < ApplicationController
   end
 
   def index
-    @likes = Like.all
+
+    if params[:latest]
+      @likes = Like.latest
+    elsif params[:old]
+      @likes = Like.old
+    else
+      @likes = Like.all
+    end
+
     @tag_list = Tag.all
   end
 
@@ -12,7 +20,7 @@ class Public::LikesController < ApplicationController
 
     @like = Like.new(like_params)
     @like.customer_id = current_customer.id
-    tag_list = params[:like][:name].split(",")
+    tag_list = params[:like][:tag_name].split(",")
 
     if @like.save
       @like.save_tag(tag_list)
@@ -40,18 +48,18 @@ class Public::LikesController < ApplicationController
   def edit
     @like = Like.find(params[:id])
     # pluckはmapと同じ意味
-    @tag_list=@like.tags.pluck(:name).join(',')
+    @tag_list=@like.tags.pluck(:tag_name).join(',')
   end
 
   def update
     @like = Like.find(params[:id])
-    tag_list=params[:like][:name].split(',')
+    tag_list=params[:like][:tag_name].split(',')
     if @like.update(like_params)
       @like.save_tag(tag_list)
-      flash[:success] = "商品の更新が完了しました。"
+      flash[:success] = "更新が完了しました。"
       redirect_to like_path(@like)
     else
-      flash[:danger] = "商品の更新に失敗しました。"
+      flash[:danger] = "更新に失敗しました。"
       render :edit
     end
   end
@@ -59,7 +67,7 @@ class Public::LikesController < ApplicationController
   def destroy
     like = Like.find(params[:id])
     like.destroy
-    redirect_to costomers_path
+    redirect_to root_path
   end
 
   private

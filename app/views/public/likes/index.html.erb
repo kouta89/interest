@@ -1,21 +1,23 @@
 <div class="container">
 
-  <% @tag_list.each do |list| %>
+  <%# @tag_list.each do |list| %>
     <%#= link_to list.name, like_tags_path(tag_id: list.id), :style=>"text-decoration: none; color: #000;" do %>
-    <%= list.name %>
+    <%#= list.name %>
     <%# end %>
-    <%="(#{list.posts.count})" %>
-  <% end %>
+    <%#="(#{list.posts.count})" %>
+  <%# end %>
 
   <div class="border-right border-left border-bottom p-2">
     <h4>投稿記事</h4>
+    <%= link_to '新しい順', likes_path(latest: "true") %>
+    |<%= link_to '古い順', likes_path(old: "true") %>
+    <%#= link_to '評価の高い順', likes_path(favorite_count: "true") %>
   </div>
 
-<!-- ユーザーの投稿一覧 -->
+ <!--ユーザーの投稿一覧-->
 
   <% @likes.each do |l| %>
-  <i class="fas fa-tag"><%= l.tags.map(&:name).join(', ') %></i>
-  <div id="favorite_buttons_<%= @likes.id %>">
+  <div id="favorite_buttons_<%= l.id %>">
     <%= render 'public/likes/like', like: l %>
   </div>
   <% end %>

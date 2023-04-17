@@ -13,25 +13,20 @@
   <body>
     <!--ヘッダー-->
     <nav class="navbar navbar-dark bg-info p-3">
-      <div class="d-flex col-md-3 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
+      <div class="d-flex col-md-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
 
         <!--タイトルロゴ-->
         <a class="navbar-brand" href="/">
           <%= image_tag 'logo.png', size: '100x100' %>
         </a>
-
-        <!--アイコンを設定できる-->
-        <!--<button class="navbar-toggler d-md-none collapsed mb-3" type="button" data-toggle="collapse" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">-->
-        <!--  <span class="navbar-toggler-icon"></span>-->
-        <!--</button>-->
       </div>
 
-      <!--検索（実装していない）-->
-      <div class="col-md-6">
+      <!--検索-->
+      <div class="col-md-8">
         <%= render 'searches/search' %>
       </div>
 
-      <div class="col-md-3 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
+      <div class="col-md-2 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
 
         <div class="dropdown">
           <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
@@ -152,8 +147,17 @@
               <!--ユーザー一覧情報のページに遷移-->
               <li class="nav-item">
                 <a class="nav-link">
+                  <%= link_to likes_path, :style=>"text-decoration: none; color: #000;" do %>
+                    <i class="fas fa-laugh-squint fa-2x"></i><span class="mx-2">すべての投稿から探す</span>
+                  <% end %>
+                </a>
+              </li>
+
+              <!--いいねした投稿の一覧情報のページに遷移-->
+              <li class="nav-item">
+                <a class="nav-link">
                   <%= link_to favorites_customer_path(current_customer), :style=>"text-decoration: none; color: #000;" do %>
-                    <i class="fas fa-users fa-2x"></i><span class="mx-2">いいねした投稿</span>
+                    <i class="fas fa-heart fa-2x"></i><span class="mx-2">いいねした投稿</span>
                   <% end %>
                 </a>
               </li>

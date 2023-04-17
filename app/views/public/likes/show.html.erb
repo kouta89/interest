@@ -1,12 +1,5 @@
 <div class="container">
 
-  <% @like_tags.each do |tag| %>
-    <%#= link_to tag.name, tag_likes_path(tag_id: tag.id), :style=>"text-decoration: none; color: #000;" do %>
-    <%= tag.likes.count %>
-    <%# end %>
-    <%=tag.name%><%="(#{tag.likes.count})" %>
-  <% end %>
-
   <div class="border-right border-left border-bottom py-2 px-4">
     <h4>投稿詳細</h4>
   </div>
