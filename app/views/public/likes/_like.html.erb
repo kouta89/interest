@@ -60,9 +60,14 @@
 
     <!--タグ関連-->
     <div>
-      <%#= link_to tag.name, tag_likes_path(tag_id: tag.id), :style=>"text-decoration: none; color: #000;" do %>
-        <i class="fas fa-tag"></i> : <%= like.tags.map(&:tag_name).join(', ') %>
-      <%# end %>
+      <i class="fas fa-tag"></i> :
+
+      <% like.tags.each do |tag| %>
+        <%= link_to search_tag_path(tag_id: tag.id) do %>
+        <%= tag.tag_name %>
+        <% end %>
+        <%#= like.tags.map(&:tag_name).join(', ') %>
+      <% end %>
 
       <%#= tag.tag_name%><%#="(#{tag.likes.count})" %>
     </div>

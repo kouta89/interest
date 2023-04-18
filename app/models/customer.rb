@@ -37,7 +37,7 @@ class Customer < ApplicationRecord
     followings.include?(customer)
   end
 
-  # 検索方法分岐
+  # 検索方法
   def self.looks(word)
     @customer = Customer.where("name LIKE?","%#{word}%")
   end

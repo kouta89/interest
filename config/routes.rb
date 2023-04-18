@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root :to =>"homes#top"
   get "/about" => "homes#about"
 
+  get "/tag" => "homes#index"
+
   #タグによって絞り込んだ投稿を表示するアクションへのルーティング
   resources :tags do
     get 'likes', to: 'likes#search'
@@ -9,6 +11,7 @@ Rails.application.routes.draw do
 
   # 検索
   get "search" => "searches#search"
+  get "search_tag" => "searches#search_tag"
 
   #顧客用
   devise_for :customers,skip: [:passwords], controllers: {

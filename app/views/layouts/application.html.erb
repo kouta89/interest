@@ -153,6 +153,15 @@
                 </a>
               </li>
 
+              <!--タグ一覧情報のページに遷移-->
+              <li class="nav-item">
+                <a class="nav-link">
+                  <%= link_to tag_path, :style=>"text-decoration: none; color: #000;" do %>
+                    <i class="fas fa-tag fa-2x"></i><span class="mx-2">タグから探す</span>
+                  <% end %>
+                </a>
+              </li>
+
               <!--いいねした投稿の一覧情報のページに遷移-->
               <li class="nav-item">
                 <a class="nav-link">
@@ -191,12 +200,12 @@
                 </a>
               </li>
 
-              <!--ホーム画面に遷移-->
+              <!--about画面に遷移-->
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page">
 
-                  <%= link_to root_path, :style=>"text-decoration: none; color: #000;" do %>
-                    <i class="fas fa-home fa-2x"></i>ホーム
+                  <%= link_to about_path, :style=>"text-decoration: none; color: #000;" do %>
+                    <i class="fas fa-home fa-2x"></i>サイト説明
                   <% end %>
                 </a>
               </li>

@@ -1,7 +1,15 @@
 <div class="container">
 
   <div class="border-right border-left border-bottom p-2 px-4">
-    <h4>ヒットしたユーザー</h4>
+
+    <% if @range == "ユーザー検索" %>
+    <h4 class="text-primary font-weight-bold">検索名：<%= @word %></h4>
+    <% elsif @range == "キーワード検索" %>
+    <h4 class="text-primary font-weight-bold">検索ワード：<%= @word %></h4>
+    <% elsif @range == "タグ検索" %>
+    <h4 class="text-primary font-weight-bold">検索タグ：<%= @word %></h4>
+    <% end %>
+
   </div>
 
   <!-- ユーザーの詳細 -->
@@ -10,7 +18,7 @@
     <!--プロフィール画像、名前、プロフィール文-->
     <div class="border-bottom p-2">
 
-      <div class="row">
+
         <% if @range == "ユーザー名" %>
         <div class="col-1 mx-3 font-weight-bold"></div>
         <div class="col-10 font-weight-bold">名前</div>
@@ -18,57 +26,67 @@
         <div class="col-1 mx-3 font-weight-bold"></div>
         <div class="col-10 font-weight-bold">タイトル</div>
         <% end %>
-      </div>
+
 
     </div>
+  </div>
 
-    <div class="border-bottom p-2">
-      <div class="row">
+    <div>
 
-        <% if @range == "ユーザー検索" %>
+      <% if @range == "ユーザー検索" %>
 
-          <% @customers.each do |customer| %>
+        <% @customers.each do |customer| %>
 
-            <span class="col-1 mx-3">
-              <%= link_to customer_path(customer.id) do %>
-              <%= image_tag customer.get_profile_image, size: '40x40',class:"border" %>
-              <% end %>
-            </span>
+          <span class="col-1 mx-3">
+            <%= link_to customer_path(customer.id) do %>
+            <%= image_tag customer.get_profile_image, size: '40x40',class:"border" %>
+            <% end %>
+          </span>
 
-            <div class="col-10">
-              <%= link_to customer_path(customer.id), :style=>"text-decoration: none; color: #000;" do %>
-              <h4 class="font-weight-bold"><%= customer.name %></h4>
-              <% end %>
-            </div>
-
-          <% end %>
-
-        <% elsif @range == "キーワード検索" %>
-
-          <% @likes.each do |like| %>
-
-            <span class="col-1 mx-3">
-              <%= link_to customer_path(like.customer.id) do %>
-              <%= image_tag like.customer.get_profile_image, size: '40x40',class:"border" %>
-              <% end %>
-            </span>
-
-            <div class="col-10">
-              <%= link_to like_path(like.id), :style=>"text-decoration: none; color: #000;" do %>
-              <h4 class="font-weight-bold"><%= like.name %></h4>
-              <% end %><br>
-              <%= like.introduction %>
-            </div>
-
-          <% end %>
-
-        <% elsif @range == "タグ検索" %>
-
-
+          <div class="col-10">
+            <%= link_to customer_path(customer.id), :style=>"text-decoration: none; color: #000;" do %>
+            <h4 class="font-weight-bold"><%= customer.name %></h4>
+            <% end %>
+          </div>
 
         <% end %>
 
-      </div>
+      <% elsif @range == "キーワード検索" %>
+
+        <!-- ユーザーの投稿一覧 -->
+
+        <% @likes.each do |l| %>
+        <div id="favorite_buttons_<%= l.id %>">
+          <%= render 'public/likes/like', like: l %>
+        </div>
+        <% end %>
+
+
+      <% elsif @range == "タグ検索" %>
+
+        <!-- ユーザーの投稿一覧 -->
+        <% @tags.each do |tag| %>
+          <%#= tag.likes %>
+          <% tag.likes.each do |like| %>
+            <!--<div id="favorite_buttons_<%#= l.id %>">-->
+            <%= render 'public/likes/like', like: like %>
+            <!--</div>-->
+          <% end %>
+        <% end %>
+
+        <%# @likes.each do |l| %>
+          <%#= @tag.tag_name %>
+          <%# if l.tags == @tags %>
+          <!--<div id="favorite_buttons_<%#= l.id %>">-->
+            <%#= render 'public/likes/like', like: l %>
+          <!--</div>-->
+          <%# end %>
+        <%# end %>
+
+      <% else %>
+      <% end %>
+
+
     </div>
 
   </div>

@@ -1,0 +1,19 @@
+<div class="container">
+
+  <div class="border-right border-left border-bottom p-2 px-4">
+    <h4>タグが「
+    <span class="text-primary font-weight-bold"><%= @tag.tag_name %></span>
+    」の投稿一覧</h4>
+  </div>
+
+  <!-- ユーザーの詳細 -->
+  <div class="border-right border-left border-bottom">
+
+    <% @likes.each do |l| %>
+    <div id="favorite_buttons_<%= l.id %>">
+      <%= render 'public/likes/like', like: l %>
+    </div>
+    <% end %>
+
+  </div>
+</div>
