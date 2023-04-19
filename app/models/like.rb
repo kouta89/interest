@@ -9,8 +9,8 @@ class Like < ApplicationRecord
   scope :old, -> {order(created_at: :asc)}
 
   # タグ
-  has_many :like_tags,dependent: :destroy
-  has_many :tags,through: :like_tags
+  has_many :like_tags, dependent: :destroy
+  has_many :tags, through: :like_tags
 
   def save_tag(sent_tags)
     # タグが存在していれば、タグの名前を配列として全て取得

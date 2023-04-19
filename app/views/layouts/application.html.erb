@@ -30,7 +30,17 @@
 
         <div class="dropdown">
           <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
-            Profile
+
+            <!--adminログイン時のヘッダー-->
+            <% if admin_signed_in? %>
+            ログアウト
+            <!--customerログイン時のヘッダー-->
+            <% elsif customer_signed_in? %>
+            プロフィール
+            <!--ゲストログイン時のヘッダー-->
+            <% else %>
+            ログインはこちら
+            <% end %>
           </button>
 
           <!--ユーザー関連の情報-->
@@ -40,7 +50,7 @@
             <% if admin_signed_in? %>
 
             <!--ログアウトする-->
-            <li>
+            <li class="text-center">
               <a class="dropdown-item">
                 <%= link_to destroy_admin_session_path, method: :delete, :style=>"text-decoration: none; color: #000;" do %>ログアウト<% end %>
               </a>
@@ -50,21 +60,21 @@
             <% elsif customer_signed_in? %>
 
             <!--プロフィールに遷移-->
-            <li>
+            <li class="text-center">
               <a class="dropdown-item">
                 <%= link_to  customer_path(current_customer), :style=>"text-decoration: none; color: #000;" do %>プロフィール<% end %>
               </a>
             </li>
 
             <!--ログアウトする-->
-            <li>
+            <li class="text-center">
               <a class="dropdown-item">
                 <%= link_to destroy_customer_session_path, method: :delete, :style=>"text-decoration: none; color: #000;" do %>ログアウト<% end %>
               </a>
             </li>
 
             <!--退会する-->
-            <li>
+            <li class="text-center">
               <a class="dropdown-item">
                 <%= link_to unsubscribe_path(current_customer), :style=>"text-decoration: none; color: #F00;" do %>退会<% end %>
               </a>
@@ -74,23 +84,21 @@
             <% else %>
 
             <!--ログイン画面に遷移-->
-            <li>
+            <li class="text-center">
               <a class="dropdown-item link-str">
-                <%= link_to  new_customer_session_path, :style=>"text-decoration: none; color: #000;" do%>
-                  ログイン
-                <% end %>
+                <%= link_to  new_customer_session_path, :style=>"text-decoration: none; color: #000;" do%>ログイン<% end %>
               </a>
             </li>
 
             <!--新規登録画面に遷移-->
-            <li>
+            <li class="text-center">
               <a class="dropdown-item">
                 <%= link_to new_customer_registration_path, data: {"turbolinks" => false}, :style=>"text-decoration: none; color: #000;" do %>新規登録<% end %>
               </a>
             </li>
 
             <!--管理者ログイン画面に遷移-->
-            <li>
+            <li class="text-center">
               <a class="dropdown-item">
                 <%= link_to  new_admin_session_path, :style=>"text-decoration: none; color: #000;" do%>管理者ログイン<% end %>
               </a>
