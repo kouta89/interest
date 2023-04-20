@@ -10,7 +10,7 @@ class Public::LikesController < ApplicationController
     elsif params[:old]
       @likes = Like.old
     else
-      @likes = Like.all
+      @likes = Like.all.page(params[:page]).per(5)
     end
 
     @tag_list = Tag.all

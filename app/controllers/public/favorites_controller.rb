@@ -6,10 +6,6 @@ class Public::FavoritesController < ApplicationController
     @favorite.save
   end
 
-  def index
-    @like_favorites = Favorite.all
-  end
-
   def destroy
     @favorite = Favorite.find_by(customer_id: current_customer.id, like_id: params[:like_id])
     @like = @favorite.like
