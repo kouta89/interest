@@ -1,0 +1,32 @@
+<% if customer_signed_in? %> <!-- ログインしているとき -->
+
+  <% if like.favorited?(current_customer) %>
+
+    <!-- すでにいいね済みの場合はいいねを解除 -->
+    <%= link_to like_favorites_path(like.id), method: :delete, remote: true, :style=>"text-decoration: none; color: #000;" do %>
+      <div class ="mx-2">
+        <i class="fas fa-heart" style="color: red;"></i>
+        <%= like.favorites.count %>
+      </div>
+    <% end %>
+
+  <% else %>
+
+    <!-- まだいいねしていない場合はいいね登録 -->
+    <%= link_to like_favorites_path(like.id), method: :post, remote: true, :style=>"text-decoration: none; color: #000;" do %>
+    <div class ="mx-2">
+      <i class="fas fa-heart"></i>
+      <%= like.favorites.count %>
+    </div>
+    <% end %>
+
+  <% end %>
+
+<!--ログインしていないときいいねの数を表示するだけにする-->
+<% else %>
+
+  <div class ="mx-2">
+    <i class="fas fa-heart"></i>
+    <%= like.favorites.count %>
+  </div>
+<% end %>

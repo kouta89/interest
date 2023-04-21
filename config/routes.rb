@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :customers, only: [:index, :show, :update, :edit]do
       resource :relationships, only: [:create, :destroy]
-      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'index' => 'relationships#index', as: 'index'
       member do
         get :favorites
       end

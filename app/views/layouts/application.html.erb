@@ -182,7 +182,7 @@
               <!--フォロー関連情報のページに遷移-->
               <li class="nav-item">
                 <a class="nav-link">
-                  <%= link_to customer_followings_path(current_customer.id), :style=>"text-decoration: none; color: #000;" do %>
+                  <%= link_to customer_index_path(current_customer.id), :style=>"text-decoration: none; color: #000;" do %>
                     <i class="fas fa-users fa-2x"></i><span class="mx-2">フォロー</span>
                   <% end %>
                 </a>

@@ -1,0 +1,7 @@
+<!--フォロー機能-->
+<!--remote: trueを加えることにより、フォロー機能を非同期化-->
+<% if current_customer.following?(customer) %>
+  <%= link_to "フォローを外す", customer_relationships_path(customer.id), method: :delete, remote: true, class: "btn btn-primary btn-sm mt-2" %>
+<% else %>
+  <%= link_to "フォローする", customer_relationships_path(customer.id), method: :post, remote: true, class: "btn btn-primary btn-sm mt-2" %>
+<% end %>

@@ -66,22 +66,14 @@
 
         <!-- ユーザーの投稿一覧 -->
         <% @tags.each do |tag| %>
-          <%#= tag.likes %>
-          <% tag.likes.each do |like| %>
-            <!--<div id="favorite_buttons_<%#= l.id %>">-->
-            <%= render 'public/likes/like', like: like %>
-            <!--</div>-->
-          <% end %>
-        <% end %>
 
-        <%# @likes.each do |l| %>
-          <%#= @tag.tag_name %>
-          <%# if l.tags == @tags %>
-          <!--<div id="favorite_buttons_<%#= l.id %>">-->
-            <%#= render 'public/likes/like', like: l %>
-          <!--</div>-->
-          <%# end %>
-        <%# end %>
+          <% tag.likes.each do |like| %>
+            <div id="favorite_buttons_<%= like.id %>">
+            <%= render 'public/likes/like', like: like %>
+            </div>
+          <% end %>
+
+        <% end %>
 
       <% else %>
       <% end %>

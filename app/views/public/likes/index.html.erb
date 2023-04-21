@@ -1,12 +1,5 @@
 <div class="container">
 
-  <%# @tag_list.each do |list| %>
-    <%#= link_to list.name, like_tags_path(tag_id: list.id), :style=>"text-decoration: none; color: #000;" do %>
-    <%#= list.name %>
-    <%# end %>
-    <%#="(#{list.posts.count})" %>
-  <%# end %>
-
   <div class="border-right border-left border-bottom p-2">
     <h4 class="text-primary font-weight-bold">投稿記事</h4>
     <%= link_to '新しい順', likes_path(latest: "true") %>

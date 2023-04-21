@@ -74,42 +74,17 @@
 
     <div class="row m-2">
 
-    <!-- コメント数の可視化 -->
-    <div class ="mx-2">
-      <i class="fas fa-comment-dots"></i>
-      <%= like.comments.count %>
-    </div>
-
-    <% if customer_signed_in? %> <!-- ログインしているとき -->
-
-      <% if like.favorited?(current_customer) %>
-
-        <!-- すでにいいね済みの場合はいいねを解除 -->
-        <%= link_to like_favorites_path(like.id), method: :delete, remote: true, :style=>"text-decoration: none; color: #000;" do %>
-          <div class ="mx-2">
-            <i class="fas fa-heart" style="color: red;"></i>
-            <%= like.favorites.count %>
-          </div>
-        <% end %>
-
-      <% else %>
-
-        <!-- まだいいねしていない場合はいいね登録 -->
-        <%= link_to like_favorites_path(like.id), method: :post, remote: true, :style=>"text-decoration: none; color: #000;" do %>
-        <div class ="mx-2">
-          <i class="fas fa-heart"></i>
-          <%= like.favorites.count %>
-        </div>
-        <% end %>
-
-      <% end %>
-
-    <% else %>
+      <!-- コメント数の可視化 -->
       <div class ="mx-2">
-        <i class="fas fa-heart"></i>
-        <%= like.favorites.count %>
+        <i class="fas fa-comment-dots"></i>
+        <%= like.comments.count %>
       </div>
-    <% end %>
+
+      <!--いいね機能の部分テンプレートを読み込む-->
+      <%= render 'public/favorites/favorites', like: like %>
+
+      <%= like.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+
     </div>
 
   </div>

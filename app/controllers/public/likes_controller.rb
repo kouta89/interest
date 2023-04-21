@@ -36,6 +36,7 @@ class Public::LikesController < ApplicationController
     @like = Like.find(params[:id])
     @like_tags = @like.tags
     @comments = @like.comments
+    @comment_reply = @like.comments.build #コメントに対する返信用の変数
     @comment = Comment.new
   end
 

@@ -4,10 +4,12 @@
     <h4 class="text-primary font-weight-bold">投稿詳細</h4>
   </div>
 
+  <!-- ユーザーの投稿詳細 -->
   <div id="favorite_buttons_<%= @like.id %>">
-    <%= render 'like', like: @like %>
+  <%= render 'like', like: @like %>
   </div>
 
+  <!--以下、コメント機能-->
   <div class="border-right border-left border-bottom">
 
     <div id="content-lists">
@@ -28,6 +30,11 @@
 
     <!--投稿に対してのコメント一覧-->
     <% @comments.each do |comment| %>
+
+    <% if comment.parent_id.present? || comment.id.blank? %>
+      <% next %>
+    <% end %>
+
     <div id="content-lists">
       <div class="row">
       	<!--ユーザー画像-->
@@ -55,6 +62,30 @@
         </div>
       </div>
     </div>
+
+    <!--新しく追加した項目--------------->
+        <hr>
+        <p> <%= comment.customer.name %> : <%=comment.comment_content%></p>
+        <p> date : <%=comment.created_at.strftime("%Y-%m-%d %H:%M") %>
+      <div id="reply_area">
+        
+      </div>
+
+      <%= form_with(model:[@like,@comment_reply]) do |form| %>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <p><label>Reply</label></p>
+            <textarea class="form-control input-form" name="comment[comment_content]" rows="2"><%=@comment_reply.comment_content%></textarea>
+          </div>
+        </div>
+          <%= form.hidden_field :like_id, value: @like.id %>
+          <%= form.hidden_field :parent_id, value: comment.id%>
+        <div class="actions">
+          <%= form.submit %>
+        </div>
+      <% end %>
+      <!-------------------------------->
+
     <% end %>
   </div>
 
