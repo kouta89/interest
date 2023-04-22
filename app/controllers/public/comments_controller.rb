@@ -1,16 +1,24 @@
 class Public::CommentsController < ApplicationController
   def create
-    like = Like.find(params[:like_id])
-    comment = current_customer.comments.new(comment_params)
-    comment.like_id = like.id
-    comment.save
-    redirect_to like_path(like)
+    @like = Like.find(params[:like_id])
+    @comment = current_customer.comments.new(comment_params)
+    @comment.like_id = @like.id
+    @comments = @like.comments
+    @comment_reply = @like.comments.build
+    @comment.save
+    # redirect_to like_path(like)
   end
 
   def destroy
-    Comment.find_by(id: params[:id],like_id: params[:like_id]).destroy
-    like = Like.find(params[:like_id])
-    redirect_to like_path(like)
+    @like = Like.find(params[:like_id])
+    @comment = Comment.find_by(id: params[:id])
+    @comments = @like.comments
+    @comment_reply = @like.comments.build
+    if @comment != nil
+      @comment.destroy
+    end
+
+    # redirect_to like_path(like)
   end
 
   private

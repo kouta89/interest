@@ -83,7 +83,7 @@
       <!--いいね機能の部分テンプレートを読み込む-->
       <%= render 'public/favorites/favorites', like: like %>
 
-      <%= like.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+      <%= like.created_at.strftime('投稿日　%Y/%m/%d %H:%M') %>
 
     </div>
 

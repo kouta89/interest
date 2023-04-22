@@ -31,7 +31,7 @@ Customer.create!(
          email: 'e@e',
          name: 'きつね',
          password: 'eeeeee',
-         profile: 'やーん',
+         profile: 'こん',
          image: ActiveStorage::Blob.create_and_upload!(io: File.open('app/assets/images/customer/kitune.png'), filename: 'test.png')
       },
       {

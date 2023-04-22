@@ -9,84 +9,9 @@
   <%= render 'like', like: @like %>
   </div>
 
-  <!--以下、コメント機能-->
-  <div class="border-right border-left border-bottom">
-
-    <div id="content-lists">
-      <div class="row">
-
-        <div class="col-2">
-          <%= image_tag current_customer.get_profile_image, size: "60x60",class:"border d-block mx-auto" %>
-        </div>
-        <div class="col-8 py-2">
-        <%= form_with(model:[@like, @comment], method: :post) do |f| %>
-          <%= f.text_field :comment_content %>
-          <%= f.submit 'コメントする' %>
-        <% end %>
-        </div>
-
-      </div>
-    </div>
-
-    <!--投稿に対してのコメント一覧-->
-    <% @comments.each do |comment| %>
-
-    <% if comment.parent_id.present? || comment.id.blank? %>
-      <% next %>
-    <% end %>
-
-    <div id="content-lists">
-      <div class="row">
-      	<!--ユーザー画像-->
-        <div class="col-2">
-          <%= image_tag comment.customer.get_profile_image, size: "60x60",class:"border d-block mx-auto" %>
-        </div>
-
-        <div class="col-8 py-2">
-          <p class="font-weight-bold mb-2">
-            <%= link_to customer_path(comment.customer.id), :style=>"text-decoration: none; color: #000;" do %><%= comment.customer.name %><% end %>
-          </p>
-
-          <p class="mb-0">
-            <%= comment.comment_content %>
-          </p>
-        </div>
-
-        <!--コメントの削除-->
-        <div class="col-2">
-          <% if comment.customer == current_customer %>
-            <%= link_to  like_comment_path(comment.like.id,comment.id), :style=>"text-decoration: none; color: #000;", method: :delete do %>
-            <i class="fas fa-trash-alt" style="color:red;"></i>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-
-    <!--新しく追加した項目--------------->
-        <hr>
-        <p> <%= comment.customer.name %> : <%=comment.comment_content%></p>
-        <p> date : <%=comment.created_at.strftime("%Y-%m-%d %H:%M") %>
-      <div id="reply_area">
-        
-      </div>
-
-      <%= form_with(model:[@like,@comment_reply]) do |form| %>
-        <div class="row">
-          <div class="form-group col-md-6">
-            <p><label>Reply</label></p>
-            <textarea class="form-control input-form" name="comment[comment_content]" rows="2"><%=@comment_reply.comment_content%></textarea>
-          </div>
-        </div>
-          <%= form.hidden_field :like_id, value: @like.id %>
-          <%= form.hidden_field :parent_id, value: comment.id%>
-        <div class="actions">
-          <%= form.submit %>
-        </div>
-      <% end %>
-      <!-------------------------------->
-
-    <% end %>
+  <!-- 投稿に対してのコメント機能 -->
+  <div id="comment_buttons">
+  <%= render 'public/comments/comment', like: @like, comment: @comment,comments: @comments, comment_reply: @comment_reply %>
   </div>
 
 </div>
