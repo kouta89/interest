@@ -1,6 +1,8 @@
 class HomesController < ApplicationController
   def top
-    @likes = Like.all.page(params[:page]).per(5)
+    # いいねの数が多い人気のページ順に表示
+    likes = Like.includes(:favorites).sort {|a,b| b.favorites.count <=> a.favorites.count}
+    @likes = Kaminari.paginate_array(likes).page(params[:page]).per(5)
   end
 
   def about

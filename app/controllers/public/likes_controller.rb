@@ -6,11 +6,14 @@ class Public::LikesController < ApplicationController
   def index
 
     if params[:latest]
-      @likes = Like.latest
+      likes = Like.latest
+      @likes = Kaminari.paginate_array(likes).page(params[:page]).per(5)
     elsif params[:old]
-      @likes = Like.old
+      likes = Like.old
+      @likes = Kaminari.paginate_array(likes).page(params[:page]).per(5)
     else
-      @likes = Like.all.page(params[:page]).per(5)
+      likes = Like.all
+      @likes = Kaminari.paginate_array(likes).page(params[:page]).per(5)
     end
 
     @tag_list = Tag.all

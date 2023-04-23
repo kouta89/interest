@@ -6,7 +6,6 @@ class Public::CommentsController < ApplicationController
     @comments = @like.comments
     @comment_reply = @like.comments.build
     @comment.save
-    # redirect_to like_path(like)
   end
 
   def destroy
@@ -17,8 +16,6 @@ class Public::CommentsController < ApplicationController
     if @comment != nil
       @comment.destroy
     end
-
-    # redirect_to like_path(like)
   end
 
   private
