@@ -12,104 +12,99 @@
 
   <body>
     <!--ヘッダー-->
-    <nav class="navbar navbar-dark bg-info p-3">
-      <div class="d-flex col-md-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
+    <header>
+      <nav class="navbar navbar-dark p-3">
+        <div class="d-flex col-md-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
 
-        <!--タイトルロゴ-->
-        <a class="navbar-brand" href="/">
-          <%= image_tag 'logo.png', size: '100x100' %>
-        </a>
-      </div>
-
-      <!--検索-->
-      <div class="col-md-8">
-        <%= render 'searches/search' %>
-      </div>
-
-      <div class="col-md-2 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
-
-        <div class="dropdown">
-          <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
-
-            <!--adminログイン時のヘッダー-->
-            <% if admin_signed_in? %>
-            ログアウト
-            <!--customerログイン時のヘッダー-->
-            <% elsif customer_signed_in? %>
-            プロフィール
-            <!--ゲストログイン時のヘッダー-->
-            <% else %>
-            ログインはこちら
-            <% end %>
-          </button>
-
-          <!--ユーザー関連の情報-->
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-            <!--adminログイン時のヘッダー-->
-            <% if admin_signed_in? %>
-
-            <!--ログアウトする-->
-            <li class="text-center">
-              <a class="dropdown-item">
-                <%= link_to destroy_admin_session_path, method: :delete, :style=>"text-decoration: none; color: #000;" do %>ログアウト<% end %>
-              </a>
-            </li>
-
-            <!--customerログイン時のヘッダー-->
-            <% elsif customer_signed_in? %>
-
-            <!--プロフィールに遷移-->
-            <li class="text-center">
-              <a class="dropdown-item">
-                <%= link_to  customer_path(current_customer), :style=>"text-decoration: none; color: #000;" do %>プロフィール<% end %>
-              </a>
-            </li>
-
-            <!--ログアウトする-->
-            <li class="text-center">
-              <a class="dropdown-item">
-                <%= link_to destroy_customer_session_path, method: :delete, :style=>"text-decoration: none; color: #000;" do %>ログアウト<% end %>
-              </a>
-            </li>
-
-            <!--退会する-->
-            <li class="text-center">
-              <a class="dropdown-item">
-                <%= link_to unsubscribe_path(current_customer), :style=>"text-decoration: none; color: #F00;" do %>退会<% end %>
-              </a>
-            </li>
-
-            <!--ゲストログイン時のヘッダー-->
-            <% else %>
-
-            <!--ログイン画面に遷移-->
-            <li class="text-center">
-              <a class="dropdown-item link-str">
-                <%= link_to  new_customer_session_path, :style=>"text-decoration: none; color: #000;" do%>ログイン<% end %>
-              </a>
-            </li>
-
-            <!--新規登録画面に遷移-->
-            <li class="text-center">
-              <a class="dropdown-item">
-                <%= link_to new_customer_registration_path, data: {"turbolinks" => false}, :style=>"text-decoration: none; color: #000;" do %>新規登録<% end %>
-              </a>
-            </li>
-
-            <!--管理者ログイン画面に遷移-->
-            <li class="text-center">
-              <a class="dropdown-item">
-                <%= link_to  new_admin_session_path, :style=>"text-decoration: none; color: #000;" do%>管理者ログイン<% end %>
-              </a>
-            </li>
-
-            <% end %>
-
-          </ul>
+          <!--タイトルロゴ-->
+          <a class="navbar-brand" href="/">
+            <%= image_tag 'logo.png', size: '100x100' %>
+          </a>
         </div>
-      </div>
-    </nav>
+
+        <!--検索-->
+        <div class="col-md-8">
+          <%= render 'searches/search' %>
+        </div>
+
+        <div class="col-md-2 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
+
+          <div class="dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+
+              <!--adminログイン時のヘッダー-->
+              <% if admin_signed_in? %>
+              ログアウト
+              <!--customerログイン時のヘッダー-->
+              <% elsif customer_signed_in? %>
+              プロフィール
+              <!--ゲストログイン時のヘッダー-->
+              <% else %>
+              ログインはこちら
+              <% end %>
+            </button>
+
+            <!--ユーザー関連の情報-->
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+              <!--adminログイン時のヘッダー-->
+              <% if admin_signed_in? %>
+
+              <!--ログアウトする-->
+              <li class="text-center">
+                <a class="dropdown-item">
+                  <%= link_to destroy_admin_session_path, method: :delete, :style=>"text-decoration: none; color: #000;" do %>ログアウト<% end %>
+                </a>
+              </li>
+
+              <!--customerログイン時のヘッダー-->
+              <% elsif customer_signed_in? %>
+
+              <!--プロフィールに遷移-->
+              <li class="text-center">
+                <a class="dropdown-item">
+                  <%= link_to  customer_path(current_customer), :style=>"text-decoration: none; color: #000;" do %>プロフィール<% end %>
+                </a>
+              </li>
+
+              <!--ログアウトする-->
+              <li class="text-center">
+                <a class="dropdown-item">
+                  <%= link_to destroy_customer_session_path, method: :delete, :style=>"text-decoration: none; color: #000;" do %>ログアウト<% end %>
+                </a>
+              </li>
+
+              <!--退会する-->
+              <li class="text-center">
+                <a class="dropdown-item">
+                  <%= link_to unsubscribe_path(current_customer), :style=>"text-decoration: none; color: #F00;" do %>退会<% end %>
+                </a>
+              </li>
+
+              <!--ゲストログイン時のヘッダー-->
+              <% else %>
+
+              <!--ログイン画面に遷移-->
+              <li class="text-center">
+                <a class="dropdown-item link-str">
+                  <%= link_to  new_customer_session_path, :style=>"text-decoration: none; color: #000;" do%>ログイン<% end %>
+                </a>
+              </li>
+
+              <!--新規登録画面に遷移-->
+              <li class="text-center">
+                <a class="dropdown-item">
+                  <%= link_to new_customer_registration_path, data: {"turbolinks" => false}, :style=>"text-decoration: none; color: #000;" do %>新規登録<% end %>
+                </a>
+              </li>
+
+              <% end %>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
 
     <div class="container">
       <div class="row">
@@ -229,7 +224,16 @@
           <%= yield %>
           </div>
         </div>
+
       </div>
     </div>
+
+    <footer>
+      <div>
+        <p>
+          <%= link_to  new_admin_session_path, :style=>"text-decoration: none; color: #fff;" do%>© 2023 ko-ta<% end %>
+        </p>
+      </div>
+    </footer>
   </body>
 </html>
