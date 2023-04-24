@@ -13,11 +13,14 @@
         <% @followings.each do |customer| %>
         <div class="row">
 
+          <!--フォローユーザーのイメージ画像-->
           <span class="col-1 mx-3">
             <%= link_to customer_path(customer.id), :style=>"text-decoration: none; color: #000;" do %>
             <%= image_tag customer.get_profile_image, size: '40x40',class:"border" %>
             <% end %>
           </span>
+
+          <!--フォローユーザーの名前、プロフィール説明-->
           <div class="col-7">
             <%= link_to customer_path(customer.id), :style=>"text-decoration: none; color: #000;" do %>
             <h4><%= customer.name %></h4>
@@ -25,6 +28,7 @@
 
             <%= customer.profile %>
           </div>
+
           <div class="col-3">
             <!--フォロー機能-->
             <div id="mypage-follow-contents-<%= customer.id %>">
@@ -41,9 +45,8 @@
       <!--フォロワー一覧-->
       <div id="tab2" class="tab">
 
+        <% @followers.each do |customer| %>
         <div class="row">
-
-          <% @followers.each do |customer| %>
           <span class="col-1 mx-3">
             <%= link_to customer_path(customer.id), :style=>"text-decoration: none; color: #000;" do %>
             <%= image_tag customer.get_profile_image, size: '40x40',class:"border" %>
@@ -56,15 +59,10 @@
 
             <%= customer.profile %>
           </div>
-          <div class="col-3">
-            <!--フォロー機能-->
-            <!--<div id="mypage-follow-contents-<%= customer.id %>">-->
-            <!--  <%#= render "public/relationships/follow", customer: customer %>-->
-            <!--</div>-->
-          </div>
+          <div class="col-3"></div>
 
-          <% end %>
         </div>
+        <% end %>
 
       </div>
 
