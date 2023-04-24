@@ -16,17 +16,15 @@
   <div class="border-right border-left border-bottom">
 
     <!--プロフィール画像、名前、プロフィール文-->
-    <div class="border-bottom p-2">
+    <div class="border-bottom d-flex">
 
-
-        <% if @range == "ユーザー名" %>
-        <div class="col-1 mx-3 font-weight-bold"></div>
-        <div class="col-10 font-weight-bold">名前</div>
-        <% else %>
-        <div class="col-1 mx-3 font-weight-bold"></div>
-        <div class="col-10 font-weight-bold">タイトル</div>
-        <% end %>
-
+      <% if @range == "ユーザー検索" %>
+      <div class="col-1 mx-3 font-weight-bold p-2"></div>
+      <div class="col-3 font-weight-bold p-2">名前</div>
+      <div class="col-7 font-weight-bold p-2">プロフィール</div>
+      <% else %>
+      <div class="col-10 font-weight-bold p-2">関連する投稿一覧</div>
+      <% end %>
 
     </div>
   </div>
@@ -37,16 +35,22 @@
 
         <% @customers.each do |customer| %>
 
-          <span class="col-1 mx-3">
-            <%= link_to customer_path(customer.id) do %>
-            <%= image_tag customer.get_profile_image, size: '40x40',class:"border" %>
-            <% end %>
-          </span>
-
-          <div class="col-10">
-            <%= link_to customer_path(customer.id), :style=>"text-decoration: none; color: #000;" do %>
-            <h4 class="font-weight-bold"><%= customer.name %></h4>
-            <% end %>
+          <div class="border-right border-left border-bottom p-2">
+            <div class="row">
+              <span class="col-1 mx-3">
+                <%= link_to customer_path(customer.id) do %>
+                <%= image_tag customer.get_profile_image, size: '40x40',class:"border" %>
+                <% end %>
+              </span>
+              <h4 class="col-3">
+                <%= link_to customer_path(customer.id), :style=>"text-decoration: none; color: #000;" do %>
+                <h4 class="font-weight-bold"><%= customer.name %></h4>
+                <% end %>
+              </h4>
+              <div class="col-7">
+                <p><%= customer.profile %></p>
+              </div>
+            </div>
           </div>
 
         <% end %>
