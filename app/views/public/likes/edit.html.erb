@@ -10,12 +10,6 @@
   <!-- ユーザーの詳細編集 -->
   <div class="pb-4">
 
-    <!--画像-->
-    <div class= "from-group pb-4">
-      <h4 class="font-weight-bold"><% f.label "画像" %></h4>
-      <%= f.file_field :image, accept: 'image/*' %>
-    </div>
-
     <!--タイトル-->
     <div class= "from-group pb-4">
       <h4 class="font-weight-bold"><%= f.label "タイトル" %></h4>
@@ -33,6 +27,12 @@
       <h4 class="font-weight-bold"><%= f.label "タグ" %></h4>
       <%= f.label "( , で区切ると複数タグが選択できます)" %>
       <%= f.text_field :tag_name, size: "50x8", class:"form-control" %>
+    </div>
+
+    <!--画像-->
+    <div class= "from-group pb-4">
+      <h4 class="font-weight-bold"><% f.label "画像" %></h4>
+      <%= f.file_field :image, accept: 'image/*' %>
     </div>
 
     <div class="form-action">
