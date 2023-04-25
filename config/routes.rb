@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :likes, only:[:index, :show, :destroy]
+    resources :likes, only:[:index, :destroy]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

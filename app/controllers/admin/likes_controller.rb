@@ -4,10 +4,6 @@ class Admin::LikesController < ApplicationController
     @likes = Like.all
   end
 
-  def show
-    @like = Like.find(params[:id])
-  end
-
   def destroy
     like = Like.find(params[:id])
     like.destroy
