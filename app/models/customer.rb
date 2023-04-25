@@ -7,6 +7,9 @@ class Customer < ApplicationRecord
   has_many :comments
   has_many :favorites,dependent: :destroy
 
+  # バリデーション
+  validates :name, presence: true, length: { maximum: 20 }
+
   # タグ関連
   has_many :like_tags, dependent: :destroy
   has_many :tags, through: :like_tags

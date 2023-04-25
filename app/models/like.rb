@@ -4,6 +4,10 @@ class Like < ApplicationRecord
   has_many :comments
   has_many :favorites, dependent: :destroy
 
+  # バリデーション
+  validates :name, presence: true, length: { maximum: 50 }
+  validates :introduction, presence: true, length: { maximum: 1000 }
+
   # 並び替え機能
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}

@@ -5,6 +5,7 @@
   </div>
 
   <%= form_with model: @like, url: likes_path, local: true do |f| %>
+  <%= render "public/shared/error_messages", model: @like %>
 
   <!-- ユーザーの詳細編集 -->
   <div class="py-4">

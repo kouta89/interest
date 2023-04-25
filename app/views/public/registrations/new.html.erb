@@ -5,7 +5,7 @@
   </div>
 
   <%= form_with model: @customer, url: customer_registration_path, local: true do |f| %>
-    <%= render "public/shared/error_messages", resource: resource %>
+    <%= render "public/shared/error_messages", model: @customer %>
 
     <!--名前入力-->
     <div class="field center-block">
