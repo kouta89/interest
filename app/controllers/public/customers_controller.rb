@@ -1,4 +1,5 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!
 
   def show
     @customer = Customer.find(params[:id])
@@ -25,6 +26,10 @@ class Public::CustomersController < ApplicationController
     end
   end
 
+  def edit_password
+    @customer = Customer.find(params[:id])
+  end
+
   def withdrawal
     @customer = Customer.find(params[:id])
     # is_deletedカラムをtrueに変更することにより削除フラグを立てる
@@ -36,7 +41,7 @@ class Public::CustomersController < ApplicationController
 
   private
   def update_params
-    params.require(:customer).permit(:image, :name, :profile)
+    params.require(:customer).permit(:image, :name, :profile, :password, :password_confirmation)
   end
 
 end

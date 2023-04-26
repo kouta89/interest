@@ -24,13 +24,14 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
-    resources :customers, only: [:index, :show, :update, :edit]do
+    resources :customers, only: [:index, :show, :update, :edit] do
       resource :relationships, only: [:create, :destroy]
       get 'index' => 'relationships#index', as: 'index'
       member do
         get :favorites
       end
     end
+    get '/customers/:id/edit_password' => 'customers#edit_password', as: 'edit_password'
     # 退会確認画面
     get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     # 論理削除用のルーティング
