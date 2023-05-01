@@ -24,9 +24,10 @@
 - 暇つぶしをしたいとき
 
 ## 設計書
-- ER図
-- テーブル定義書
-- アプリケーション詳細設計書
+- WBS: https://docs.google.com/spreadsheets/d/1v-xEIza94HpgzFHHXgStEJFTvKbCSRyjFOdW0Jsy0fg/edit?usp=sharing
+- ER図: https://drive.google.com/file/d/1eeO0CJB_0DRCMaGUP_AmspEtxxVudH1D/view?usp=sharing
+- テーブル定義書: https://docs.google.com/spreadsheets/d/1rRtTnvDA9napX-Mk2nLkpMDt95OyCdrl/edit?usp=sharing&ouid=112485614917686073472&rtpof=true&sd=true
+- アプリケーション詳細設計書: https://docs.google.com/spreadsheets/d/1WSyIsQKsuV4MofDr-wAbgBuae7npoTC0tCmYLOMN1p0/edit?usp=sharing
 
 ## 開発環境
 - OS：WindowsOS
@@ -36,4 +37,4 @@
 - IDE：Cloud9
 
 ## 使用素材
-- 未定
+- 投稿画像：提供元（写真AC様）https://www.photo-ac.com/
