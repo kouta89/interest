@@ -26,7 +26,7 @@
     <div class= "from-group mb-4">
       <h4 class="font-weight-bold"><%= f.label "タグ" %></h4>
       <%= f.label "( , で区切ると複数タグが選択できます)" %>
-      <%= f.text_field :tag_name, size: "50x8", class:"form-control" %>
+      <%= f.text_field :tag_name, value: @tag_list, size: "50x8", class:"form-control" %>
     </div>
 
     <!--画像-->

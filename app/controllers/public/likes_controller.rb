@@ -51,6 +51,11 @@ class Public::LikesController < ApplicationController
 
   def edit
     @like = Like.find(params[:id])
+    if @like.customer == current_customer
+      render "edit"
+    else
+      redirect_to likes_path
+    end
     # pluckはmapと同じ意味
     @tag_list=@like.tags.pluck(:tag_name).join(',')
   end

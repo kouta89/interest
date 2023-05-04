@@ -14,6 +14,11 @@ class Public::CustomersController < ApplicationController
 
   def edit
     @customer = Customer.find(params[:id])
+    if @customer == current_customer
+      render "edit"
+    else
+      redirect_to likes_path
+    end
   end
 
   def update
