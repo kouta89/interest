@@ -59,7 +59,7 @@
       <!--コメントの削除-->
       <div class="col-2">
         <% if comment.customer == current_customer %>
-          <%= link_to  like_comment_path(comment.like.id,comment.id), :style=>"text-decoration: none; color: #000;", method: :delete, remote: true do %>
+          <%= link_to  like_comment_path(comment.like.id,comment.id), method: :delete, data: { confilm: "本当に削除しますか？" }, remote: true do %>
           <i class="fas fa-trash-alt" style="color:red;"></i>
           <% end %>
         <% end %>
@@ -119,7 +119,7 @@
       <!--リプライの削除-->
       <div class="col-2">
         <% if reply.customer == current_customer %>
-          <%= link_to  like_comment_path(comment.like.id, reply.id), :style=>"text-decoration: none; color: #000;", method: :delete, remote: true do %>
+          <%= link_to  like_comment_path(comment.like.id, reply.id), method: :delete, data: { confilm: "本当に削除しますか？" }, remote: true do %>
           <i class="fas fa-trash-alt" style="color:red;"></i>
           <% end %>
         <% end %>
