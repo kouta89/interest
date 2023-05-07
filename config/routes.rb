@@ -28,17 +28,13 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
       get 'index' => 'relationships#index', as: 'index'
       member do
-        # get :edit_password
-        # get :unsubscribe # 退会確認画面
-        # patch :withdrawal # 論理削除用のルーティング
+        get :edit_password
+        get :unsubscribe # 退会確認画面
+        patch :withdrawal # 論理削除用のルーティング
         get :favorites
       end
     end
-    get '/customers/:id/edit_password' => 'customers#edit_password', as: 'edit_password'
 
-    get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
-
-    patch '/customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
     resources :likes do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]

@@ -70,7 +70,7 @@
               <!--メールアドレス編集に遷移-->
               <li class="text-center">
                 <a class="dropdown-item">
-                  <%= link_to  edit_password_path(current_customer), :style=>"text-decoration: none; color: #000;" do %>パスワード<% end %>
+                  <%= link_to  edit_password_customer_path(current_customer), :style=>"text-decoration: none; color: #000;" do %>パスワード<% end %>
                 </a>
               </li>
 
@@ -84,7 +84,7 @@
               <!--退会する-->
               <li class="text-center">
                 <a class="dropdown-item">
-                  <%= link_to unsubscribe_path(current_customer), :style=>"text-decoration: none; color: #F00;" do %>退会<% end %>
+                  <%= link_to unsubscribe_customer_path(current_customer), :style=>"text-decoration: none; color: #F00;" do %>退会<% end %>
                 </a>
               </li>
 
